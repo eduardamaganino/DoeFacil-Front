@@ -73,5 +73,18 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
         ]
+    },
+
+     // Admin routes
+     {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: InitialDataResolver,
+        },
+        children: [
+            {path: 'item', loadChildren: () => import('app/modules/item/item.module').then(m => m.ItemModule)},
+        ]
     }
 ];

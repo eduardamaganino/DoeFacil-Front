@@ -13,7 +13,6 @@ import { MessagesModule } from 'app/layout/common/messages/messages.module';
 import { NotificationsModule } from 'app/layout/common/notifications/notifications.module';
 import { QuickChatModule } from 'app/layout/common/quick-chat/quick-chat.module';
 import { SearchModule } from 'app/layout/common/search/search.module';
-import { ShortcutsModule } from 'app/layout/common/shortcuts/shortcuts.module';
 import { UserModule } from 'app/layout/common/user/user.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { EnterpriseLayoutComponent } from 'app/layout/layouts/horizontal/enterprise/enterprise.component';
@@ -37,7 +36,6 @@ import { EnterpriseLayoutComponent } from 'app/layout/layouts/horizontal/enterpr
         NotificationsModule,
         QuickChatModule,
         SearchModule,
-        ShortcutsModule,
         UserModule,
         SharedModule
     ],
