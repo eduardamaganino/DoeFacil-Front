@@ -6,6 +6,10 @@ import { Route, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from 'app/shared/shared.module';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
+
 
 const itensRoutes: Route[] = [
 
@@ -27,7 +31,10 @@ const itensRoutes: Route[] = [
     CommonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    SharedModule,
+    MatDividerModule,
+    MatSelectModule
   ]
 })
 export class ItemModule { }
