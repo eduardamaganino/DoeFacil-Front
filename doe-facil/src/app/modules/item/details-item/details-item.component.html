@@ -1,134 +1,100 @@
 <div class="relative flex flex-col flex-auto min-w-0 overflow-hidden">
-
     <!-- Main -->
     <div class="flex flex-col flex-auto px-6 py-10 sm:px-16 sm:pt-18 sm:pb-20">
-
         <!-- Activity feed -->
         <div class="w-full text-center">
-
-            <!-- Title -->
-            <div class="text-4xl font-extrabold tracking-tight leading-none">Crie seu anuncio de doação!</div>
-            <div class="mt-1.5 text-lg text-secondary">Quanto mais completo seu anuncio estiver, mais fácil será a doação</div>
-
-            <!-- Formulario -->
+            <fuse-card class="h-160 mt-7">
             <ng-container>
-                <div class="relative flex flex-col flex-auto items-center px-6 sm:px-12 mt-8">
-                    <div class="w-full max-w-3xl">
-                        <form>
-                            <!-- Título -->
-                            <div class="flex flex-auto items-end mt-4 px-64">
-                                <input type="text" class="px-8 py-2 border border-gray-300 rounded" placeholder="Título do Anúncio">
+                <div class="relative flex flex-row flex-auto items-start px-6 sm:px-12 mt-8">                
+                    <!-- Parte de upload (alinha à esquerda) -->
+                    <div class="w-100 mr-20">
+                        <div class="grid grid-cols-2 gap-4">
+                          <ng-container *ngFor="let index of [0, 1, 2, 3, 4, 5, 6, 7]; let i = index">
+                            <div
+                              class="relative flex items-center justify-center h-32 overflow-hidden border-2 border-dashed border-black rounded-2xl"
+                            >
+                              <!-- Upload / Remove avatar -->
+                              <div class="absolute inset-0 bg-gray-50 z-10"></div>
+                              <div class="absolute inset-0 flex items-center justify-center z-20">
+                                <div>
+                                  <input
+                                    class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                    type="file"
+                                    [multiple]="false"
+                                    [accept]="'image/jpeg, image/png'"
+                                  />
+                                  <label
+                                    class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
+                                    for="avatar-file-input"
+                                    matRipple
+                                  >
+                                    <mat-icon class="text-black" [svgIcon]="'heroicons_outline:camera'"></mat-icon>
+                                  </label>
+                                </div>
+                                <div>
+                                  <button mat-icon-button>
+                                    <mat-icon class="text-black" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                                  </button>
+                                </div>
+                              </div>
+                              <!-- Image/Letter -->
+                              <img class="object-cover w-full h-full" />
                             </div>
-                            <!-- Descrição -->
-                            <div class="flex flex-auto items-end mt-4 px-64">
-                                <input type="text" class="px-8 py-2 border border-gray-300 rounded" placeholder="Descrição do Anúncio">
-                            </div>
-                             <!-- Categorias -->
-                             <div class="flex flex-auto items-end mt-4 px-64">
-                                <input type="text" class="px-8 py-2 border border-gray-300 rounded" placeholder="Categoria do Anúncio">
-                            </div>
-                            <!-- Avatar -->
-                            <div class="flex flex-auto items-end mt-4 px-30"> <!-- Adicione a classe "mt-4" aqui -->
-                                <div class="relative flex items-center justify-center w-32 h-32 overflow-hidden ring-4 ring-bg-card">
-                                    <!-- Upload / Remove avatar -->
-                                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center z-20">
-                                        <div>
-                                            <input class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                                type="file" [multiple]="false" [accept]="'image/jpeg, image/png'">
-                                            <label class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
-                                                for="avatar-file-input" matRipple>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:camera'"></mat-icon>
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <button mat-icon-button>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- Image/Letter -->
-                                    <img class="object-cover w-full h-full">
+                          </ng-container>
+                        </div>
+                      </div>
+                    <!-- Parte da direita -->
+                    <div class="w-1/2 pr-4 ml-28">
+                        <div class="w-full max-w-3xl">
+                            <div class="mb-4">
+                                    <!-- Title -->
+                                <div class="text-4xl font-extrabold tracking-tight leading-none text-center">
+                                    Crie seu anuncio de doação!
+                                </div>
+                                <div class="mt-1.5 text-lg text-secondary text-center">
+                                    Quanto mais completo seu anuncio estiver, mais fácil será a
+                                    doação
                                 </div>
                             </div>
-                            <!-- Avatar -->
-                            <div class="flex flex-auto items-end mt-4 px-30"> <!-- Adicione a classe "mt-4" aqui -->
-                                <div class="relative flex items-center justify-center w-32 h-32 overflow-hidden ring-4 ring-bg-card">
-                                    <!-- Upload / Remove avatar -->
-                                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center z-20">
-                                        <div>
-                                            <input class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                                type="file" [multiple]="false" [accept]="'image/jpeg, image/png'">
-                                            <label class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
-                                                for="avatar-file-input" matRipple>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:camera'"></mat-icon>
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <button mat-icon-button>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- Image/Letter -->
-                                    <img class="object-cover w-full h-full">
-                                </div>
-                            </div>           
-                            <!-- Avatar -->
-                            <div class="flex flex-auto items-end mt-4 px-30"> <!-- Adicione a classe "mt-4" aqui -->
-                                <div class="relative flex items-center justify-center w-32 h-32 overflow-hidden ring-4 ring-bg-card">
-                                    <!-- Upload / Remove avatar -->
-                                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center z-20">
-                                        <div>
-                                            <input class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                                type="file" [multiple]="false" [accept]="'image/jpeg, image/png'">
-                                            <label class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
-                                                for="avatar-file-input" matRipple>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:camera'"></mat-icon>
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <button mat-icon-button>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- Image/Letter -->
-                                    <img class="object-cover w-full h-full">
-                                </div>
-                            </div>
-                            <!-- Avatar -->
-                            <div class="flex flex-auto items-end mt-4 px-3"> <!-- Adicione a classe "mt-4" aqui -->
-                                <div class="relative flex items-center justify-center w-32 h-32 overflow-hidden ring-4 ring-bg-card">
-                                    <!-- Upload / Remove avatar -->
-                                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center z-20">
-                                        <div>
-                                            <input class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                                type="file" [multiple]="false" [accept]="'image/jpeg, image/png'">
-                                            <label class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
-                                                for="avatar-file-input" matRipple>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:camera'"></mat-icon>
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <button mat-icon-button>
-                                                <mat-icon class="text-white" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- Image/Letter -->
-                                    <img class="object-cover w-full h-full">
-                                </div>
-                            </div>             
-                        </form>
+                            <form>
+                                <!-- Título -->
+                                <mat-form-field appearance="outline" class="mt-4 w-full">
+                                    <mat-label>Título do Anúncio</mat-label>
+                                    <input matInput placeholder="Ex: Vaso" />
+                                </mat-form-field>
+                                <!-- Descrição -->
+                                <mat-form-field appearance="outline" class="mt-4 w-full h-full">
+                                    <mat-label>Descrição do Anúncio</mat-label>
+                                    <textarea matInput placeholder="Ex: Vaso para jardinagem com tamanho de 15 centimetros de altura e 5 de diametro, formato circular, otimo para colocar sua pequena planta." rows="5" cols="5" class="resize-none"></textarea>
+                                </mat-form-field>
+                                <!-- Categorias -->
+                                <mat-form-field appearance="outline" class="mt-4 w-full">
+                                    <mat-label>Categorias</mat-label>
+                                    <mat-select>
+                                        <mat-option
+                                            *ngFor="let category of categories"
+                                            [value]="category"
+                                        >
+                                            {{ category }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </form>
+                        </div>
+                        <!-- Botão enviar -->
+                        <div class="flex justify-center mt-8">
+                            <button
+                                mat-raised-button
+                                color="primary"
+                                class="w-1/2"
+                            >
+                                Enviar
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </div>                
             </ng-container>
-
+        </fuse-card>
         </div>
     </div>
-
 </div>

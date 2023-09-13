@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class DetailsItemComponent {
 
   
-  categories: ['moda', 'calcados','joias'];
+  categories = ['moda', 'calcados','joias', 'jardinagem', 'decoracao', 'brinquedos', 'livros', 'eletrodomesticos', 'moveis', 'outros'];
 
 
 }
