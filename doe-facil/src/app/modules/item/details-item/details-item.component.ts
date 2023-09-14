@@ -10,6 +10,7 @@ export class DetailsItemComponent {
 
   
   categories = ['moda', 'calcados','joias', 'jardinagem', 'decoracao', 'brinquedos', 'livros', 'eletrodomesticos', 'moveis', 'outros'];
+  radioValue: number = -1;
 
 
 }
