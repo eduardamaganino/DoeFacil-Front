@@ -30,10 +30,9 @@ export const futuristicNavigation: FuseNavigationItem[] = [
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
     {
-        id   : 'example',
-        title: 'Example',
+        id   : 'categorias',
+        title: 'Categorias',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
         link : '/example'
     }
 ];

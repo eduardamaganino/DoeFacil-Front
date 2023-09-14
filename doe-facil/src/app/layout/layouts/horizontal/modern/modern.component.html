@@ -15,7 +15,7 @@
             <div class="flex items-center h-20 pt-6 px-8">
                 <img
                     class="w-24"
-                    src="assets/images/logo/logo-text-on-dark.svg"
+                    src="assets/images/logo/doeFacilLogo.svg"
                     alt="Logo image">
             </div>
         </ng-container>
@@ -33,14 +33,8 @@
                 <div class="hidden lg:flex">
                     <img
                         class="dark:hidden w-24"
-                        src="assets/images/logo/logo-text.svg">
-                    <img
-                        class="hidden dark:flex w-24"
-                        src="assets/images/logo/logo-text-on-dark.svg">
+                        src="assets/images/logo/doeFacilLogo.svg">               
                 </div>
-                <img
-                    class="flex lg:hidden w-8"
-                    src="assets/images/logo/logo.svg">
             </div>
             <!-- Horizontal navigation -->
             <fuse-horizontal-navigation
@@ -58,33 +52,21 @@
         </ng-container>
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
+            <search [appearance]="'basic'"></search>
             <languages></languages>
-            <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
-            <search [appearance]="'bar'"></search>
-            
-            <button
-                class="lg:hidden"
-                mat-icon-button
-                (click)="quickChat.toggle()">
-                <mat-icon [svgIcon]="'heroicons_outline:chat-alt-2'"></mat-icon>
-            </button>
             <user></user>
         </div>
     </div>
 
     <!-- Content -->
     <div class="flex flex-col flex-auto w-full">
-        <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
-             Otherwise, layout changes won't be registered and the view won't be updated! -->
+    
         <router-outlet *ngIf="true"></router-outlet>
     </div>
 
     <!-- Footer -->
     <div class="relative flex flex-0 items-center w-full h-14 sm:h-20 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
-        <span class="font-medium text-secondary">Fuse &copy; {{currentYear}}</span>
+        <span class="font-medium text-secondary">DoeFácil &copy; {{currentYear}}</span>
     </div>
 
 </div>
-
-<!-- Quick chat -->
-<quick-chat #quickChat="quickChat"></quick-chat>

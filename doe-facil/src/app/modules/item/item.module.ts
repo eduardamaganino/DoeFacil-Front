@@ -20,6 +20,10 @@ const itensRoutes: Route[] = [
     path     : 'create',
     component: DetailsItemComponent,
   },
+  {
+    path     : 'list',
+    component: ListItemComponent,
+  },
 ];
 
 
