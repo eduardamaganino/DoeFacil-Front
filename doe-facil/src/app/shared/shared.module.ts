@@ -17,7 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
         MatFormFieldModule,
         MatSelectModule,
         FuseCardModule,
-        MatButtonModule
+        MatButtonModule,
+        
     ],
     exports: [
         CommonModule,
