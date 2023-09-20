@@ -30,10 +30,8 @@
         <ng-container *ngIf="!isScreenSmall">
             <!-- Logo -->
             <div class="flex items-center mx-2 lg:mr-8">
-                <div class="hidden lg:flex">
-                    <img
-                        class="dark:hidden w-24"
-                        src="assets/images/logo/doeFacilLogo.svg">               
+                <div class="hidden lg:flex" [routerLink]="'/example'">
+                    <img class="dark:hidden w-24" src="assets/images/logo/doeFacilLogo.svg">               
                 </div>
             </div>
             <!-- Horizontal navigation -->
@@ -53,14 +51,12 @@
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
             <search [appearance]="'basic'"></search>
-            <languages></languages>
             <user></user>
         </div>
     </div>
 
     <!-- Content -->
     <div class="flex flex-col flex-auto w-full">
-    
         <router-outlet *ngIf="true"></router-outlet>
     </div>
 

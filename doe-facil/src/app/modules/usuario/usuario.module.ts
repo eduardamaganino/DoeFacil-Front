@@ -24,6 +24,9 @@ import { FuseFindByKeyPipeModule } from '@fuse/pipes/find-by-key';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
+import { LoginUserComponent } from './login-user/login-user.component';
+import { FuseAlertModule } from "../../../@fuse/components/alert/alert.module";
+import { AuthSignInComponent } from '../auth/sign-in/sign-in.component';
 
 const usuarioRoutes: Route[] = [
 
@@ -35,47 +38,53 @@ const usuarioRoutes: Route[] = [
     path     : 'list',
     component: ListUsuarioComponent,
   },
+  {
+    path     : 'login',
+    component: AuthSignInComponent,
+  },
 ];
 
 
 @NgModule({
-  declarations: [
-    DetailsUsuarioComponent,
-    ListUsuarioComponent
-  ],
-  imports: [
-    RouterModule.forChild(usuarioRoutes),
-    CommonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    SharedModule,
-    MatDividerModule,
-    MatSelectModule,
-    MatRadioModule,
-    FormsModule,
-    MatMenuModule,
-    MatTooltipModule,
-    FuseCardModule,
-    SharedModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatLuxonDateModule,
-    MatMenuModule,
-    MatProgressBarModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatTableModule,
-    MatTooltipModule,
-    FuseFindByKeyPipeModule,
-    SharedModule
-  ]
+    declarations: [
+        DetailsUsuarioComponent,
+        ListUsuarioComponent,
+        LoginUserComponent
+    ],
+    imports: [
+        RouterModule.forChild(usuarioRoutes),
+        CommonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        SharedModule,
+        MatDividerModule,
+        MatSelectModule,
+        MatRadioModule,
+        FormsModule,
+        MatMenuModule,
+        MatTooltipModule,
+        FuseCardModule,
+        SharedModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatLuxonDateModule,
+        MatMenuModule,
+        MatProgressBarModule,
+        MatRadioModule,
+        MatRippleModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatTableModule,
+        MatTooltipModule,
+        FuseFindByKeyPipeModule,
+        SharedModule,
+        FuseAlertModule
+    ]
 })
 export class UsuarioModule { }

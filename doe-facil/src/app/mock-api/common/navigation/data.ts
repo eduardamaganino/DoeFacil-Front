@@ -34,5 +34,11 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         title: 'Categorias',
         type : 'basic',
         link : '/example'
+    },
+    {
+        id   : 'categorias',
+        title: 'Categorias',
+        type : 'basic',
+        link : '/example'
     }
 ];

@@ -1,84 +1,73 @@
-<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto" cdkScrollable>
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="h-400 min-h-400 max-h-400">
+            <!-- Main -->
+            <div class="flex flex-auto p-6 sm:p-10">
 
-    <!-- Main -->
-    <div class="flex flex-auto p-6 sm:p-10">
-
-        <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto">
-            <!-- Filters -->
-            <div class="flex flex-col sm:flex-row items-center justify-between w-full max-w-xs sm:max-w-none">
-                <mat-form-field
-                    class="w-full sm:w-36"
-                    [subscriptSizing]="'dynamic'">
-                    <mat-select>
-                        <ng-container >
-                            <mat-option >Regiao</mat-option>
-                            <mat-option >Tamanho</mat-option>
-                            <mat-option >Sei la</mat-option>
-                        </ng-container>
-                    </mat-select>
-                   <!-- <mat-select
-                        [value]="'all'"
-                        (selectionChange)="filterByCategory($event)">
-                        <mat-option [value]="'all'">All</mat-option>
-                        <ng-container *ngFor="let category of categories; trackBy: trackByFn">
-                            <mat-option [value]="category.slug">{{category.title}}</mat-option>
-                        </ng-container>
-                    </mat-select>-->
-                </mat-form-field>
-            </div>
-            <!-- Itens -->
-            <ng-container>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
+                <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto">
+                    <!-- Filters -->
+                    <div class="flex flex-col-reverse sm:flex-row items-center justify-between w-full max-w-xs sm:max-w-none">
+                        <mat-form-field
+                            class="w-full sm:w-36"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-select [value]="'all'">
+                                <mat-option [value]="'all'">All</mat-option>
+                                <ng-container>
+                                    <mat-option>category.title</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!-- Items -->
                     <ng-container>
-                        <!-- Item -->
-                        <div class="flex flex-col h-96 shadow rounded-2xl overflow-hidden bg-card">
-                            <div class="flex flex-col p-6">
-                                <div class="flex items-center justify-between">
-                                    <!-- Item category -->
-                                    <ng-container>
-                                        <div class="py-0.5 px-3 rounded-full text-sm font-semibold" >
-                                            Nome categoria
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
+                            <ng-container>
+                                <!-- Column -->
+                                <div class="flex flex-col items-start">
+                                    <fuse-card class="flex flex-col max-w-80 w-full p-8">
+                                        <div class="text-2xl font-semibold leading-tight">Titulo Item</div>
+                                        <div class="mt-4">
+                                            <img
+                                            class="h-40 lg:h-80"
+                                            src="assets/images/profile/sofa.jpg"
+                                        >                </div>
+                                        <hr class="w-full border-t my-6">
+                                        <div class="flex flex-col">
+                                            <div class="flex items-center">
+                                                <mat-icon
+                                                    class="icon-size-5 mr-3"
+                                                    [svgIcon]="'heroicons_outline:location-marker'"></mat-icon>
+                                                <span class="leading-none">Cidade</span>
+                                            </div>
+                                            <div class="flex items-center mt-4">
+                                                <mat-icon
+                                                    class="icon-size-5 mr-3"
+                                                    [svgIcon]="'heroicons_outline:briefcase'"></mat-icon>
+                                                <span class="leading-none">Categoria</span>
+                                            </div>
+                                            <div class="flex items-center mt-4">
+                                                <mat-icon
+                                                    class="icon-size-5 mr-3"
+                                                    [svgIcon]="'heroicons_outline:information-circle'"></mat-icon>
+                                                <span class="leading-none">Descricao</span>
+                                            </div>
                                         </div>
-                                    </ng-container>
+                                        <a
+                                            class="px-6 mt-8"
+                                            mat-flat-button
+                                            [color]="'primary'"
+                                            [routerLink]="['./']">
+                                            See 
+                                        </a>
+                                    </fuse-card>
                                 </div>
-                                <!-- Itens title & description -->
-                                <div> <img
-                                    class="dark:hidden w-24"
-                                    src="assets/images/logo/logo-text.svg"></div>
-                                <div class="mt-4 text-lg font-medium">item.title</div>
-                                <div class="mt-0.5 line-clamp-2 text-secondary">item.description</div>
-                                <div class="w-12 h-1 my-6 border-t-2"></div>
-                              
-                            </div>
-                            <!-- Footer -->
-                            <div class="flex flex-col w-full mt-auto">
-                                <!-- Course launch button -->
-                                <div class="px-6 py-4 text-right bg-gray-50 dark:bg-transparent">
-                                    <a mat-stroked-button >
-                                        <span class="inline-flex items-center">
-                                           Ver mais
-                                            <mat-icon class="ml-1.5 icon-size-5"
-                                            [svgIcon]="'heroicons_solid:arrow-sm-right'"></mat-icon>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
+                            </ng-container>
                         </div>
                     </ng-container>
-                </div>
-            </ng-container>
 
-            <!-- No itens 
-            <ng-template #noCourses>
-                <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
-                    <mat-icon
-                        class="icon-size-24"
-                        [svgIcon]="'heroicons_outline:document-search'"></mat-icon>
-                    <div class="mt-6 text-2xl font-semibold tracking-tight text-secondary">No courses found!</div>
                 </div>
-            </ng-template>-->
+
+            </div>
         </div>
-
     </div>
-
 </div>
