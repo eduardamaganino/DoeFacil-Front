@@ -28,6 +28,12 @@
     </button>
     <mat-divider class="my-2"></mat-divider>
     <button
+        mat-menu-item [routerLink]="'item/create'">
+        <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+        <span>Crie um item</span>
+    </button>
+    <mat-divider class="my-2"></mat-divider>
+    <button
         mat-menu-item
         (click)="signOut()">
         <mat-icon [svgIcon]="'heroicons_outline:logout'"></mat-icon>

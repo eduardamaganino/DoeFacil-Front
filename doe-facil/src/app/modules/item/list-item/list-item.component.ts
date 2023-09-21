@@ -1,13 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Item } from '../shared/item.model';
+import { ItemService } from '../shared/item.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent {
+export class ListItemComponent implements OnInit, OnDestroy {
 
-  //primeiro vai ter que receber uma categoria como parametro, e depois de fazer isso pegar todas que tem essa categoria
-  //criar um array e colocar la
+  itensCollection: Item[] = [];
+  currentItem: Item = {};
+  currentIndex = -1;
+  debug = true;
+  category: string;
+  private routeSubscription: Subscription;
 
+  constructor(protected itemService: ItemService, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.routeSubscription = this.route.paramMap
+      .pipe(
+        switchMap(params => {
+          this.category = params.get('nameCategory');
+          return this.itemService.getAll();
+        })
+      )
+      .subscribe(
+        itens => {
+          this.itensCollection = itens.filter(item => item.categoria === this.category);
+          if (this.debug) console.log(this.itensCollection);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+
+
+  onSearchResults() {
+
+   }
 }

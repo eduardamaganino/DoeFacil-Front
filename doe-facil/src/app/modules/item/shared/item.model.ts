@@ -5,11 +5,12 @@ export class Item extends BaseResourceModel{
     id?: any;
     titulo?: string;
     motivo?: string;
-    usuario?: Usuario;
-    foto?: string;
+    quantidade?: number;
+    usuario?: string;
+    fotos?: string;
     tempoDeUso?: string;
     condicao?: string;
-    categoria?: number;
+    categoria?: any;
 
     static fromJson(jsonData: any): Item{
         return Object.assign(new Item(), jsonData);

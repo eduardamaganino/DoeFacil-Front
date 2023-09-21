@@ -5,25 +5,16 @@ export class Usuario extends BaseResourceModel{
     nome?: string;
     email?: string;
     senha?: string;
-    fotoPerfil?: string;
-    fotoFundo?: string;
-    descricao?: string;
+    foto?: string;
+    //fotoFundo?: string;
+    bio?: string;
     telefone?: number;
     cpf?: string;
-    dataNascimento?: any;
+    nascimento?: string;
     sexo?: string;
-    avaliacao?: string[];
-    listaDoacao?: string[];
-    endereco?: Endereco[];
-
-
-    static fromJson(jsonData: any): Usuario{
-        return Object.assign(new Usuario(), jsonData);
-    }
-}
-
-export class Endereco extends BaseResourceModel{
-    id?: any;
+    nota?: string[];
+    countAvaliacao: number;
+    listaDeDoacao?: string[];
     rua?: number;
     numero?: string;  
     cep?: string;  
@@ -32,8 +23,7 @@ export class Endereco extends BaseResourceModel{
     estado?: string;  
     pais?: string;  
 
-    
-    static fromJson(jsonData: any): Endereco{
-        return Object.assign(new Endereco(), jsonData);
+    static fromJson(jsonData: any): Usuario{
+        return Object.assign(new Usuario(), jsonData);
     }
 }

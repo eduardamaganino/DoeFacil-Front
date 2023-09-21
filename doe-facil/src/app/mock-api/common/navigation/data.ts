@@ -28,17 +28,11 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/example'
     }
 ];
-export const horizontalNavigation: FuseNavigationItem[] = [
-    {
-        id   : 'categorias',
-        title: 'Categorias',
-        type : 'basic',
-        link : '/example'
-    },
-    {
-        id   : 'categorias',
-        title: 'Categorias',
-        type : 'basic',
-        link : '/example'
-    }
-];
+const categories = ['moda', 'calcados', 'joias', 'jardinagem', 'decoracao', 'brinquedos', 'livros', 'eletrodomesticos', 'moveis', 'outros'];
+
+export const horizontalNavigation: FuseNavigationItem[] = categories.map(category => ({
+  id: category,
+  title: category,
+  type: 'basic',
+  link: `/item/list/${category}`
+}));

@@ -21,7 +21,7 @@ const itensRoutes: Route[] = [
     component: DetailsItemComponent,
   },
   {
-    path     : 'list',
+    path     : 'list/:nameCategory',
     component: ListItemComponent,
   },
 ];
@@ -43,7 +43,7 @@ const itensRoutes: Route[] = [
     MatDividerModule,
     MatSelectModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class ItemModule { }
