@@ -56,7 +56,7 @@
                         </div>
                     </div>
 
-                    <!-- Name -->
+                    <!-- Nome -->
                     <div class="mt-8">
                         <mat-form-field
                             class="w-full"
@@ -79,71 +79,72 @@
                         </mat-form-field>
                     </div>
 
-                    <!-- Emails -->
-                    <div class="mt-8">
-                        <div class="space-y-4">
-                            <ng-container>
-                                <div class="flex">
-                                    <mat-form-field
-                                        class="flex-auto"
-                                        [subscriptSizing]="'dynamic'">
-                                        <mat-label >Email</mat-label>
-                                        <mat-icon
-                                            matPrefix
-                                            class="hidden sm:flex icon-size-5"
-                                            [svgIcon]="'heroicons_solid:mail'"></mat-icon>
-                                        <input
-                                            matInput
-                                            id="email"
-                                            required
-                                            [(ngModel)]="usuario.email"
-                                            name="email"
-                                            [autocomplete]="'off'"
-                                            [spellcheck]="false"
-                                            [placeholder]="'Email'"
-                                            [spellcheck]="false">
-                                    </mat-form-field>
-                                   
-                                </div>
-                            </ng-container>
-                        </div>
-                       
-                    </div>
-
-                    <!-- Telefone -->
-                    <div class="mt-8">
-                        <div class="space-y-4">
-                            <ng-container >
-                                <div class="relative flex">
-                                    <mat-form-field
-                                        class="flex-auto"
-                                        [subscriptSizing]="'dynamic'">
-                                        <mat-label >Phone</mat-label>
-                                        <input
-                                            matInput
-                                            [placeholder]="'Phone'">
-                                       
-                                    </mat-form-field>
-                                   
-                                </div>
-                            </ng-container>
-                        </div>
-                       
-                    </div>
-
-                    <!-- Endereço -->
+                    <!-- Email -->
                     <div class="mt-8">
                         <mat-form-field
                             class="w-full"
                             [subscriptSizing]="'dynamic'">
-                            <mat-label>Endereco</mat-label>
+                            <mat-label>Email</mat-label>
                             <mat-icon
                                 matPrefix
                                 class="hidden sm:flex icon-size-5"
-                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                             <input
                                 matInput
-                                [placeholder]="'Address'">
+                                id="email"
+                                required
+                                [(ngModel)]="usuario.email"
+                                name="email"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Email'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                     <!-- Senha -->
+                     <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Senha</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="senha"
+                                required
+                                [(ngModel)]="usuario.senha"
+                                name="senha"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Senha'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                     <!-- Telefone -->
+                     <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Telefone</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="telefone"
+                                required
+                                [(ngModel)]="usuario.telefone"
+                                name="telefone"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Telefone'"
+                                [spellcheck]="false">
                         </mat-form-field>
                     </div>
 
@@ -152,22 +153,323 @@
                         <mat-form-field
                             class="w-full"
                             [subscriptSizing]="'dynamic'">
-                            <mat-label>Data de nascimento</mat-label>
+                            <mat-label>Idade</mat-label>
                             <mat-icon
                                 matPrefix
                                 class="hidden sm:flex icon-size-5"
-                                [svgIcon]="'heroicons_solid:cake'"></mat-icon>
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                             <input
                                 matInput
-                                [matDatepicker]="birthdayDatepicker"
-                                [placeholder]="'Birthday'">
-                            <mat-datepicker-toggle
-                                matSuffix
-                                [for]="birthdayDatepicker">
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #birthdayDatepicker></mat-datepicker>
+                                id="nascimento"
+                                required
+                                [(ngModel)]="usuario.idade"
+                                name="nascimento"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Nascimento'"
+                                [spellcheck]="false">
                         </mat-form-field>
                     </div>
+
+                    <!-- Foto -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Foto</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="foto"
+                                required
+                                [(ngModel)]="usuario.foto"
+                                name="foto"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Foto'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Bio -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Bio</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="bio"
+                                required
+                                [(ngModel)]="usuario.bio"
+                                name="bio"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Bio'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- cpf -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>CPF</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="cpf"
+                                required
+                                [(ngModel)]="usuario.cpf"
+                                name="cpf"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'CPF'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Sexo -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Sexo</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="sexo"
+                                required
+                                [(ngModel)]="usuario.sexo"
+                                name="sexo"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Sexo'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Rua -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Rua</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="rua"
+                                required
+                                [(ngModel)]="usuario.rua"
+                                name="rua"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Rua'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Numero -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Numero</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="numero"
+                                required
+                                [(ngModel)]="usuario.numero"
+                                name="numero"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Numero'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Cep -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Cep</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="cep"
+                                required
+                                [(ngModel)]="usuario.cep"
+                                name="cep"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'CEP'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Cidade -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Cidade</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="cidade"
+                                required
+                                [(ngModel)]="usuario.cidade"
+                                name="cidade"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Cidade'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Estado</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="estado"
+                                required
+                                [(ngModel)]="usuario.estado"
+                                name="estado"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Estado'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Pais -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Pais</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="pais"
+                                required
+                                [(ngModel)]="usuario.pais"
+                                name="pais"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Pais'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Logradouro -->
+                    <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Logradouro</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="logradouro"
+                                required
+                                [(ngModel)]="usuario.logradouro"
+                                name="logradouro"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Logradouro'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                     <!-- Nota -->
+                     <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Nota</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="nota"
+                                required
+                                [(ngModel)]="usuario.nota"
+                                name="nota"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'Nota'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+
+                     <!-- Count -->
+                     <div class="mt-8">
+                        <mat-form-field
+                            class="w-full"
+                            [subscriptSizing]="'dynamic'">
+                            <mat-label>Count</mat-label>
+                            <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            <input
+                                matInput
+                                id="countAvaliacao"
+                                required
+                                [(ngModel)]="usuario.countAvaliacao"
+                                name="countAvaliacao"
+                                [autocomplete]="'off'"
+                                [spellcheck]="false"
+                                [placeholder]="'countAvaliacao'"
+                                [spellcheck]="false">
+                        </mat-form-field>
+                    </div>
+                   
 
                     <!-- Actions -->
                     <div class="flex items-center mt-10 -mx-6 sm:-mx-12 py-4 pr-4 pl-1 sm:pr-12 sm:pl-7 border-t bg-gray-50 dark:bg-transparent">
@@ -176,6 +478,8 @@
                             mat-button
                             [color]="'warn'"
                             [matTooltip]="'Delete'"
+                            *ngIf="edit"
+                            (click)="delete()"
                             >
                             Delete
                         </button>
@@ -192,7 +496,7 @@
                             class="ml-2"
                             mat-flat-button
                             [color]="'primary'"
-                            
+                            (click)="submit()"
                             [matTooltip]="'Save'"
                            >
                             Save

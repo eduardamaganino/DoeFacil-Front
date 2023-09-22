@@ -35,13 +35,17 @@ const usuarioRoutes: Route[] = [
     component: DetailsUsuarioComponent,
   },
   {
-    path     : 'list',
+    path     : 'list/:id',
     component: ListUsuarioComponent,
   },
   {
     path     : 'login',
     component: AuthSignInComponent,
   },
+  {
+    path     : 'edit/:id',
+    component: DetailsUsuarioComponent
+  }
 ];
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario.model';
 import { UsuarioService } from '../shared/usuario.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-details-usuario',
@@ -11,67 +12,40 @@ export class DetailsUsuarioComponent implements OnInit{
   
   checked = false;
   disabled = false;
+  edit: boolean;
 
-  usuario: Usuario = {
-    nome: '',
-    email:'',
-    senha: '',
-    foto:'',
-    //fotoFundo?: string;
-    bio: '',
-    telefone: 0,
-    cpf: '',
-    nascimento: '',
-    sexo: '',
-    nota: [],
-    countAvaliacao: 0,
-    listaDeDoacao: [],
-    rua: 0,
-    numero: '',  
-    cep: '',  
-    logradouro: '',
-    cidade: '', 
-    estado: '', 
-    pais: '',  
-
-  }
+  usuario: Usuario = new Usuario();
 
 
   submitted = false;
   debug = true;
+  currentUserID: string;
 
   constructor(private usuarioService: UsuarioService,
-              ) {}
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params.id) {
+        this.edit = true;
+        this.currentUserID = params.id;
+        this.getUser(this.currentUserID);
+      } else {
+        this.edit = false;
+      }
+    }); 
+  }
 
- 
+  getUser(id: any){
+    this.usuarioService.get(id).subscribe((usuario) => {
+      this.usuario = usuario 
+    });
   }
 
   createUsuario(): void {
-    const data = {
-      nome: this.usuario.nome,
-      email: this.usuario.email,
-      senha:  this.usuario.senha,
-      foto: this.usuario.foto,
-      bio:  this.usuario.bio,
-      telefone: this.usuario.telefone,
-      cpf: this.usuario.cpf,
-      nascimento: this.usuario.nascimento,
-      sexo:  this.usuario.sexo,
-      nota: this.usuario.nota,
-      countAvaliacao:  this.usuario.countAvaliacao,
-      listaDeDoacao:  this.usuario.listaDeDoacao,
-      rua:  this.usuario.rua,
-      numero:  this.usuario.numero, 
-      cep:  this.usuario.cep,
-      logradouro:  this.usuario.logradouro,
-      cidade: this.usuario.cidade,
-      estado:  this.usuario.estado, 
-      pais:  this.usuario.pais, 
-    };
-
-    this.usuarioService.create(data)
+    console.log(this.usuario);
+    this.usuarioService.create(this.usuario)
       .subscribe(
         response => {
           if (this.debug) console.log(response);
@@ -82,6 +56,28 @@ export class DetailsUsuarioComponent implements OnInit{
           console.log(error);
          
         });
+  }
+  
+  updateUsuario(){
+    this.usuarioService.update(this.usuario.userId, this.usuario).subscribe((res)=>{
+      alert('Usuario atualizado com sucesso');
+    })
+  }
+
+  submit(){
+    if(this.edit){
+      this.updateUsuario();
+    }else{
+      this.createUsuario();
+    }
+  }
+
+  delete(){
+    if(confirm('Deseja apagar sua conta?')){
+      this.usuarioService.delete(this.usuario.userId).subscribe((res)=>{
+          this.router.navigate(['item', 'list', 'moda']);
+      })
+    }
   }
 
   newUsuario(): void {
@@ -97,12 +93,11 @@ export class DetailsUsuarioComponent implements OnInit{
       bio: '',
       telefone: 0,
       cpf: '',
-      nascimento: '',
+      idade: null,
       sexo: '',
       nota: [],
       countAvaliacao: 0,
-      listaDeDoacao: [],
-      rua: 0,
+      rua: '',
       numero: '',  
       cep: '',  
       logradouro: '',

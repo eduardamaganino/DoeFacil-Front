@@ -1,73 +1,74 @@
-<div class="flex flex-col flex-auto min-w-0">
-    <div class="flex-auto p-6 sm:p-10">
-        <div class="h-400 min-h-400 max-h-400">
-            <!-- Main -->
-            <div class="flex flex-auto p-6 sm:p-10">
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto" cdkScrollable>
 
-                <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto" >
-                    <!-- Filters -->
-                    <div class="flex flex-col-reverse sm:flex-row items-center justify-between w-full max-w-xs sm:max-w-none">
-                        <mat-form-field
-                            class="w-full sm:w-36"
-                            [subscriptSizing]="'dynamic'">
-                            <mat-select [value]="'all'">
-                                <mat-option [value]="'all'">All</mat-option>
-                                <ng-container>
-                                    <mat-option>cidades</mat-option>
-                                </ng-container>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <!-- Items -->
-                    <ng-container *ngFor="let item of itensCollection; let i = index">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
-                            <ng-container>
-                                <!-- Column -->
-                                <div class="flex flex-col items-start">
-                                    <fuse-card class="flex flex-col max-w-80 w-full p-8">
-                                        <div class="text-2xl font-semibold leading-tight">{{item.titulo}}</div>
-                                        <div class="mt-4">
-                                            <img
-                                            class="h-40 lg:h-80"
-                                            src="assets/images/profile/sofa.jpg"
-                                        >                </div>
-                                        <hr class="w-full border-t my-6">
-                                        <div class="flex flex-col">
-                                            <!--<div class="flex items-center">
-                                                <mat-icon
-                                                    class="icon-size-5 mr-3"
-                                                    [svgIcon]="'heroicons_outline:location-marker'"></mat-icon>
-                                                <span class="leading-none">{{item.cidade}}</span>
-                                            </div>-->
-                                            <div class="flex items-center mt-4">
-                                                <mat-icon
-                                                    class="icon-size-5 mr-3"
-                                                    [svgIcon]="'heroicons_outline:tag'"></mat-icon>
-                                                <span class="leading-none">{{item.categoria}}</span>
-                                            </div>
-                                            <div class="flex items-center mt-4">
-                                                <mat-icon
-                                                    class="icon-size-5 mr-3"
-                                                    [svgIcon]="'heroicons_outline:information-circle'"></mat-icon>
-                                                <span class="leading-none">{{item.motivo}}</span>
-                                            </div>
-                                        </div>
-                                        <a
-                                            class="px-6 mt-8"
-                                            mat-flat-button
-                                            [color]="'primary'"
-                                            [routerLink]="['./']">
-                                            See 
-                                        </a>
-                                    </fuse-card>
-                                </div>
-                            </ng-container>
-                        </div>
-                    </ng-container>
+    <!-- Main -->
+    <div class="flex flex-auto p-6 sm:p-10">
 
-                </div>
-
+        <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto">
+            <!-- Filters -->
+            <div class="flex flex-col-reverse sm:flex-row items-center justify-between w-full max-w-xs sm:max-w-none">
+                <mat-form-field
+                    class="w-full sm:w-36"
+                    [subscriptSizing]="'dynamic'">
+                    <mat-select [value]="'all'">
+                        <mat-option [value]="'all'">All</mat-option>
+                        <ng-container>
+                            <mat-option>cidades</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
             </div>
+            <!-- items -->
+            <ng-container>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
+                    <ng-container *ngFor="let item of itensCollection">
+                        <ng-container>
+                            <!-- Column -->
+                            <div class="flex flex-col items-start">
+                                <fuse-card class="flex flex-col max-w-80 w-full p-8">
+                                    <div class="text-2xl font-semibold leading-tight">{{item.titulo}}</div>
+                                    <div class="mt-4">
+                                        <img
+                                        class="h-40 lg:h-80"
+                                        src="assets/images/profile/sofa.jpg"
+                                    >                </div>
+                                    <hr class="w-full border-t my-6">
+                                    <div class="flex flex-col">
+                                        <!--<div class="flex items-center">
+                                            <mat-icon
+                                                class="icon-size-5 mr-3"
+                                                [svgIcon]="'heroicons_outline:location-marker'"></mat-icon>
+                                            <span class="leading-none">{{item.cidade}}</span>
+                                        </div>-->
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon
+                                                class="icon-size-5 mr-3"
+                                                [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+                                            <span class="leading-none">{{item.categoria}}</span>
+                                        </div>
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon
+                                                class="icon-size-5 mr-3"
+                                                [svgIcon]="'heroicons_outline:information-circle'"></mat-icon>
+                                            <span class="leading-none">{{item.motivo}}</span>
+                                        </div>
+                                    </div>
+                                    <a
+                                        class="px-6 mt-8"
+                                        mat-flat-button
+                                        [color]="'primary'"
+                                        [routerLink]="['./']">
+                                        See 
+                                    </a>
+                                </fuse-card>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+         
         </div>
+
     </div>
+
 </div>

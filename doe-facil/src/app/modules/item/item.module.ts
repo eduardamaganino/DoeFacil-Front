@@ -21,6 +21,10 @@ const itensRoutes: Route[] = [
     component: DetailsItemComponent,
   },
   {
+    path     : 'edit/:idItem',
+    component: DetailsItemComponent,
+  },
+  {
     path     : 'list/:nameCategory',
     component: ListItemComponent,
   },

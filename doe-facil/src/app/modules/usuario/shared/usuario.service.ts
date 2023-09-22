@@ -14,5 +14,10 @@ export class UsuarioService extends BaseResourceService<Usuario>{
   constructor(protected injector: Injector) { 
     super("http://127.0.0.1:8000/api/users", injector, Usuario.fromJson)  }
 
+  authUser(email: string, password: string){
+    const path = `http://127.0.0.1:8000/api/users/${email}/${password}`
+    return this.http.get(path);
+  }
+
   
 }

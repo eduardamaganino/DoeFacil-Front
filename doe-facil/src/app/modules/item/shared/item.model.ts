@@ -2,7 +2,7 @@ import { Usuario } from "app/modules/usuario/shared/usuario.model";
 import { BaseResourceModel } from "app/shared/models/base-resource.model";
 
 export class Item extends BaseResourceModel{
-    id?: any;
+    itemId?: any;
     titulo?: string;
     motivo?: string;
     quantidade?: number;

@@ -1,7 +1,7 @@
 import { BaseResourceModel } from "app/shared/models/base-resource.model";
 
 export class Usuario extends BaseResourceModel{
-    id?: any;
+    userId?: any;
     nome?: string;
     email?: string;
     senha?: string;
@@ -10,12 +10,11 @@ export class Usuario extends BaseResourceModel{
     bio?: string;
     telefone?: number;
     cpf?: string;
-    nascimento?: string;
+    idade?: number;
     sexo?: string;
     nota?: string[];
-    countAvaliacao: number;
-    listaDeDoacao?: string[];
-    rua?: number;
+    countAvaliacao?: number;
+    rua?: string;
     numero?: string;  
     cep?: string;  
     logradouro?: string;  
