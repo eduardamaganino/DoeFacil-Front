@@ -28,9 +28,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
         link : '/example'
     }
 ];
-const categories = ['moda', 'calcados', 'joias', 'jardinagem', 'decoracao', 'brinquedos', 'livros', 'eletrodomesticos', 'moveis', 'outros'];
 
-export const horizontalNavigation: FuseNavigationItem[] = categories.map(category => ({
+
+const categories = ['roupas', 'calçados', 'acessórios', 'moveis', 'decoração', 'brinquedos', 'livros', 'outros'];
+
+
+export const horizontalNavigation: FuseNavigationItem[] = 
+categories.map(category => ({
   id: category,
   title: category,
   type: 'basic',

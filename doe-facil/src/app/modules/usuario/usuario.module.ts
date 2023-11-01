@@ -27,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { FuseAlertModule } from "../../../@fuse/components/alert/alert.module";
 import { AuthSignInComponent } from '../auth/sign-in/sign-in.component';
+import { AuthSignUpComponent } from '../auth/sign-up/sign-up.component';
 
 const usuarioRoutes: Route[] = [
 
@@ -39,12 +40,16 @@ const usuarioRoutes: Route[] = [
     component: ListUsuarioComponent,
   },
   {
-    path     : 'login',
-    component: AuthSignInComponent,
+    path     : 'criesuaconta',
+    component: AuthSignUpComponent,
   },
   {
     path     : 'edit/:id',
     component: DetailsUsuarioComponent
+  },
+  {
+    path     : 'login',
+    component: AuthSignInComponent
   }
 ];
 
@@ -58,6 +63,7 @@ const usuarioRoutes: Route[] = [
     imports: [
         RouterModule.forChild(usuarioRoutes),
         CommonModule,
+        MatSelectModule,
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,

@@ -4,6 +4,8 @@ import { UsuarioService } from '../shared/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'app/modules/item/shared/item.model';
 import { ItemService } from 'app/modules/item/shared/item.service';
+import { DoacaoService } from 'app/modules/doacao/shared/doacao.service';
+import { Doacao } from 'app/modules/doacao/shared/doacao.model';
 
 @Component({
   selector: 'app-list-usuario',
@@ -14,12 +16,13 @@ export class ListUsuarioComponent implements OnInit{
 
   checked = false;
   disabled = false;
+  menuSelecionado: string;
 
-  usuario: Usuario = {
-
-  };
+  usuario: Usuario = {};
   
   itensCollection: Item[] = [];
+  doacoesRecebidosCollection: Doacao[] = [];
+
 
   debug = true;
   message = '';
@@ -27,14 +30,15 @@ export class ListUsuarioComponent implements OnInit{
 
   constructor(private usuarioService: UsuarioService,
               private route: ActivatedRoute,
-              private router: Router,
-              private itemService: ItemService) {
+              private itemService: ItemService,
+              private doacaoService: DoacaoService) {
               }
 
   ngOnInit(): void {
     this.message = '';
     this.currentUsuarioID = this.route.snapshot.params['id']    
     this.getUsuario(this.currentUsuarioID);
+    this.menuSelecionado =  'sobreMim';
   }
             
   getUsuario(id: string): void {
@@ -52,8 +56,8 @@ export class ListUsuarioComponent implements OnInit{
   }
 
   getItensByUser(nomeUsuario: string): void {  
-      this.itemService.getAll()
-        .subscribe(data => {
+    this.itemService.getAll()
+      .subscribe(data => {
           console.log(data)
           const itensFiltrados: Item[] = [];
   
@@ -67,11 +71,28 @@ export class ListUsuarioComponent implements OnInit{
           this.itensCollection = itensFiltrados;
           console.log(this.itensCollection)
 
-        });
+    }); 
+  }
+
+  getItensRecebidos(nomeUsuario: string): void {
+    this.doacaoService.getAll()
+    .subscribe(data => {
+      console.log(data)
+      const doacaoFiltrados: Doacao[] = [];
+      for (const doacao of data) {
+        console.log(doacao.donatario)
+        if (doacao.donatario === nomeUsuario) {
+          doacaoFiltrados.push(doacao);
+        }
+      }
+      this.doacoesRecebidosCollection = doacaoFiltrados;
+      console.log(this.doacoesRecebidosCollection);
+      //getItemByDoacao(doacaoFiltrados);
+    }); 
+  }
+
+  getAvaliacao(): void {
     
   }
-  
-  
-  
 
 }

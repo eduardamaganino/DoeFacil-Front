@@ -20,7 +20,7 @@ export class Usuario extends BaseResourceModel{
     logradouro?: string;  
     cidade?: string;  
     estado?: string;  
-    pais?: string;  
+    //pais?: string;  
 
     static fromJson(jsonData: any): Usuario{
         return Object.assign(new Usuario(), jsonData);

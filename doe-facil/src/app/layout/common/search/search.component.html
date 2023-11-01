@@ -2,17 +2,17 @@
 <ng-container *ngIf="appearance === 'basic'">
     <div class="flex-auto w-full sm:min-w-80" *ngIf="appearance === 'basic'">
         <mat-form-field
-            class="fuse-mat-dense fuse-mat-rounded w-full min-w-50"
+            class="fuse-mat-dense fuse-mat-rounded w-full min-w-100"
             subscriptSizing="dynamic">
             <mat-icon
                 class="icon-size-5"
                 matPrefix
                 [svgIcon]="'heroicons_solid:search'"></mat-icon>
             <input
-            matInput
+            matInput 
             [formControl]="searchControl"
             [matAutocomplete]="matAutocomplete"
-            [placeholder]="'Search...'"
+            [placeholder]="'Pesquise aqui...'"
             (keydown)="onKeydown($event)">
         </mat-form-field>
         <mat-autocomplete

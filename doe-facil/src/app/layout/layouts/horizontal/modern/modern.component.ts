@@ -9,6 +9,7 @@ import { NavigationService } from 'app/core/navigation/navigation.service';
 @Component({
     selector     : 'modern-layout',
     templateUrl  : './modern.component.html',
+    styleUrls: ['./modern.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class ModernLayoutComponent implements OnInit, OnDestroy

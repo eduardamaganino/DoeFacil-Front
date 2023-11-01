@@ -9,6 +9,8 @@ import { ItemService } from '../shared/item.service';
   styleUrls: ['./details-item.component.scss']
 })
 export class DetailsItemComponent implements OnInit {
+
+  //ve essas categorias
   categories = ['moda', 'calcados', 'joias', 'jardinagem', 'decoracao', 'brinquedos', 'livros', 'eletrodomesticos', 'moveis', 'outros'];
   radioValue: number = -1;
   editMode: boolean = false;

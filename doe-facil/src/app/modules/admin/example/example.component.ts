@@ -5,6 +5,7 @@ import { ItemService } from 'app/modules/item/shared/item.service';
 @Component({
     selector     : 'example',
     templateUrl  : './example.component.html',
+    styleUrls    : ['./example.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class ExampleComponent implements OnInit{
@@ -15,13 +16,13 @@ export class ExampleComponent implements OnInit{
     debug = true;
     
     constructor(protected itemService: ItemService)
-    {
-    }
+    {}
 
     ngOnInit(): void {
         this.getItens();
-      }
+    }
 
+      //verificar se ta disponivel ainda ou nao
     getItens(){
         this.itemService.getAll()
             .subscribe(
@@ -45,6 +46,14 @@ export class ExampleComponent implements OnInit{
 
     onSearchResults() {
         
+    }
+
+    pedidoDeDoação(){
+        // verifica se ja existe alguma doação deste item
+        // se nao
+        // cria uma doação e adiciona no pedidos
+        // se sim
+        // adiciona nos pedidos
     }
 
     

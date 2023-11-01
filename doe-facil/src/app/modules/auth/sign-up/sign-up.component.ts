@@ -22,46 +22,26 @@ export class AuthSignUpComponent implements OnInit
     signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
 
-    /**
-     * Constructor
-     */
-    constructor(
-        private _authService: AuthService,
+
+    constructor(private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router
-    )
-    {
-    }
+    ){}
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
     ngOnInit(): void
     {
-        // Create the form
         this.signUpForm = this._formBuilder.group({
-                name      : ['', Validators.required],
+                nome      : ['', Validators.required],
                 email     : ['', [Validators.required, Validators.email]],
-                password  : ['', Validators.required],
-                company   : [''],
+                senha  : ['', Validators.required],
+                cpf   : [''],
                 agreements: ['', Validators.requiredTrue]
             }
         );
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Sign up
-     */
-    signUp(): void
-    {
+    signUp(): void {
         // Do nothing if the form is invalid
         if ( this.signUpForm.invalid )
         {
