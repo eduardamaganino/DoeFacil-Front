@@ -12,7 +12,7 @@ interface Estado {
 @Component({
   selector: 'app-details-usuario',
   templateUrl: './details-usuario.component.html',
-  styleUrls: ['./details-usuario.component.css']
+  styleUrls: ['./details-usuario.component.scss']
 })
 export class DetailsUsuarioComponent implements OnInit{
 

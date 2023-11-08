@@ -3,11 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
+import { jwtDecode } from 'jwt-decode';
+import moment from 'moment';
+import {  BehaviorSubject } from 'rxjs';
+
+
+
+interface JWTPayload {
+    user_id: number;
+    username: string;
+    email: string;
+    exp: number;
+  }
 
 @Injectable()
 export class AuthService
 {
     private _authenticated: boolean = false;
+    private _isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
 
     /**
      * Constructor
@@ -17,8 +31,26 @@ export class AuthService
         private _userService: UserService
     )
     {
+        const token = localStorage.getItem('token');
+        if (token) {
+          this._isAuthenticated.next(true);
+        }
     }
 
+
+    isAuthenticated(): boolean {
+        return this._isAuthenticated.value;
+      }
+
+    getCurrentUser(): JWTPayload {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            return null;
+        }
+    
+        const payload = <JWTPayload>jwtDecode(token);
+        return payload;
+    }
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
     // -----------------------------------------------------------------------------------------------------
@@ -33,7 +65,7 @@ export class AuthService
 
     get accessToken(): string
     {
-        return localStorage.getItem('accessToken') ?? '';
+        return localStorage.getItem('token') ?? '';
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -66,30 +98,42 @@ export class AuthService
      * @param credentials
      */
     signIn(credentials: { email: string; password: string }): Observable<any>
+{
+    // Throw error, if the user is already logged in
+    if ( this._authenticated )
     {
-        // Throw error, if the user is already logged in
-        if ( this._authenticated )
-        {
-            return throwError('User is already logged in.');
-        }
-
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
-            switchMap((response: any) => {
-
-                // Store the access token in the local storage
-                this.accessToken = response.accessToken;
-
-                // Set the authenticated flag to true
-                this._authenticated = true;
-
-                // Store the user on the user service
-                this._userService.user = response.user;
-
-                // Return a new observable with the response
-                return of(response);
-            })
-        );
+        return throwError('User is already logged in.');
     }
+
+    return this._httpClient.post('http://127.0.0.1:8000/api/token/', credentials).pipe(
+        switchMap((response: any) => {
+
+            // Use setSession method to store the token and its expiry time
+            this.setSession(response);
+
+            // Set the authenticated flag to true
+            this._authenticated = true;
+
+            // Store the user on the user service
+            this._userService.user = response.user;
+
+            // Store the token in the local storage
+            this.accessToken = response.token;
+
+            // Return a new observable with the response
+            return of(response);
+        })
+    );
+}
+
+private setSession(authResult) {
+    const token = authResult.access;
+    const payload = <JWTPayload> jwtDecode(token);
+    const expiresAt = moment.unix(payload.exp);
+
+    localStorage.setItem('token', authResult.access);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+}
 
     /**
      * Sign in using the access token

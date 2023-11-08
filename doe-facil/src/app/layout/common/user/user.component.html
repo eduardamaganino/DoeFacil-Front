@@ -5,20 +5,17 @@
     <span class="relative">
         <img
             class="w-7 h-7 rounded-full"
-            *ngIf="showAvatar && user.avatar"
-            [src]="user.avatar">
+            src="../../../../assets/images/avatars/brian-hughes.jpg">
         <mat-icon
-            *ngIf="!showAvatar || !user.avatar"
             [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
     </span>
 </button>
 
-<!--verificar se ta realmente logado se nao tiver fazer outro menu
-<mat-menu [xPosition]="'before'" #userActions="matMenu">
+<mat-menu *ngIf="isAuthenticated" [xPosition]="'before'" #userActions="matMenu">
     <button mat-menu-item>
         <span class="flex flex-col leading-none">
             <span>Signed in as</span>
-            <span class="mt-1.5 text-md font-medium">{{user.email}}</span>
+            <span class="mt-1.5 text-md font-medium">{{currentUser.email}}</span>
         </span>
     </button>
     <mat-divider class="my-2"></mat-divider>
@@ -39,9 +36,9 @@
         <mat-icon [svgIcon]="'heroicons_outline:logout'"></mat-icon>
         <span>Sair</span>
     </button>
-</mat-menu>-->
+</mat-menu>
 
-<mat-menu [xPosition]="'before'" #userActions="matMenu">
+<mat-menu *ngIf="!isAuthenticated" [xPosition]="'before'" #userActions="matMenu">
     <!--verificar se ta realmente logado se nao tiver fazer outro menu-->
     <button mat-menu-item [routerLink]="'usuario/create'">
         <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
@@ -53,5 +50,3 @@
         <span>Entrar</span>
     </button>
 </mat-menu>
-
-

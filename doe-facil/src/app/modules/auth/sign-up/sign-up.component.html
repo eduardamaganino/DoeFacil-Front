@@ -19,7 +19,6 @@
             <!-- Alert -->
             <fuse-alert
                 class="mt-8"
-                *ngIf="showAlert"
                 [appearance]="'outline'"
                 [showIcon]="false"
                 [type]="alert.type"
@@ -34,10 +33,10 @@
                 <mat-form-field class="w-full">
                     <mat-label>Nome completo</mat-label>
                     <input
-                        id="nome"
+                        id="username"
                         matInput
-                        [formControlName]="'nome'">
-                    <mat-error *ngIf="signUpForm.get('nome').hasError('required')">
+                        [formControlName]="'username'">
+                    <mat-error *ngIf="signUpForm.get('username').hasError('required')">
                         Nome completo é necessário
                     </mat-error>
                 </mat-form-field>
@@ -61,19 +60,19 @@
                 <mat-form-field class="w-full">
                     <mat-label>Senha</mat-label>
                     <input
-                        id="senha"
+                        id="password"
                         matInput
-                        type="senha"
-                        [formControlName]="'senha'"
+                        type="password"
+                        [formControlName]="'password'"
                         #passwordField>
                     <button
                         mat-icon-button
                         type="button"
-                        (click)="passwordField.type === 'senha' ? passwordField.type = 'text' : passwordField.type = 'senha'"
+                        (click)="passwordField.type === 'password' ? passwordField.type = 'password' : passwordField.type = 'password'"
                         matSuffix>
                         <mat-icon
                             class="icon-size-5"
-                            *ngIf="passwordField.type === 'senha'"
+                            *ngIf="passwordField.type === 'password'"
                             [svgIcon]="'heroicons_solid:eye'"></mat-icon>
                         <mat-icon
                             class="icon-size-5"
@@ -85,33 +84,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                 <!-- CPF field -->
-                 <mat-form-field class="w-full">
-                    <mat-label>CPF</mat-label>
-                    <input
-                        id="cpf-confirm"
-                        matInput
-                        [formControlName]="'cpf'">
-                </mat-form-field>
-
-                <!-- ToS and PP -->
-                <div class="inline-flex items-end w-full mt-1.5">
-                    <mat-checkbox
-                        class="-ml-2"
-                        [color]="'primary'"
-                        [formControlName]="'agreements'">
-                        <span>Eu concordo com</span>
-                        <a
-                            class="ml-1 text-primary-500 hover:underline"
-                            [routerLink]="['./']">Termos
-                        </a>
-                        <span>e</span>
-                        <a
-                            class="ml-1 text-primary-500 hover:underline"
-                            [routerLink]="['./']">Política de Privacidade
-                        </a>
-                    </mat-checkbox>
-                </div>
+                
 
                 <!-- Submit button -->
                 <button

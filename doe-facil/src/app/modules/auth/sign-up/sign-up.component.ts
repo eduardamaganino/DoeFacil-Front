@@ -31,11 +31,10 @@ export class AuthSignUpComponent implements OnInit
     ngOnInit(): void
     {
         this.signUpForm = this._formBuilder.group({
-                nome      : ['', Validators.required],
+                username      : ['', Validators.required],
                 email     : ['', [Validators.required, Validators.email]],
-                senha  : ['', Validators.required],
-                cpf   : [''],
-                agreements: ['', Validators.requiredTrue]
+                password  : ['', Validators.required],
+                //agreements: ['']
             }
         );
     }
@@ -45,11 +44,10 @@ export class AuthSignUpComponent implements OnInit
         // Do nothing if the form is invalid
         if ( this.signUpForm.invalid )
         {
+            console.log("invalido");
             return;
         }
 
-        // Disable the form
-        this.signUpForm.disable();
 
         // Hide the alert
         this.showAlert = false;
@@ -80,5 +78,7 @@ export class AuthSignUpComponent implements OnInit
                     this.showAlert = true;
                 }
             );
+        
+        console.log(this.signUpForm.value)
     }
 }
