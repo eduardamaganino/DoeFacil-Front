@@ -6,7 +6,7 @@ export class Item extends BaseResourceModel{
     titulo?: string;
     motivo?: string;
     quantidade?: number;
-    usuario?: string;
+    dono?: string;
     fotos?: string;
     tempoDeUso?: string;
     condicao?: string;

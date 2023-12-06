@@ -18,6 +18,4 @@ export class UsuarioService extends BaseResourceService<Usuario>{
     const path = `http://127.0.0.1:8000/api/users/${email}/${password}`
     return this.http.get(path);
   }
-
-  
 }

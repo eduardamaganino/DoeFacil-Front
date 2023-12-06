@@ -2,32 +2,26 @@
 <button
     mat-icon-button
     [matMenuTriggerFor]="userActions">
-    <span class="relative">
         <img
             class="w-7 h-7 rounded-full"
             src="../../../../assets/images/avatars/brian-hughes.jpg">
-        <mat-icon
-            [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
-    </span>
 </button>
 
-<mat-menu *ngIf="isAuthenticated" [xPosition]="'before'" #userActions="matMenu">
-    <button mat-menu-item>
-        <span class="flex flex-col leading-none">
-            <span>Signed in as</span>
-            <span class="mt-1.5 text-md font-medium">{{currentUser.email}}</span>
-        </span>
-    </button>
-    <mat-divider class="my-2"></mat-divider>
-    <button mat-menu-item [routerLink]="'usuario/list'">
+<mat-menu [xPosition]="'before'" #userActions="matMenu">
+    <button mat-menu-item [routerLink]="'/usuario/list/'+ id">
         <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
         <span>Perfil</span>
     </button>
     <mat-divider class="my-2"></mat-divider>
+    <button mat-menu-item [routerLink]="'/usuario/edit/'+ id">
+        <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
+        <span>Edit Perfil</span>
+    </button>
+    <mat-divider class="my-2"></mat-divider>
     <button
-        mat-menu-item [routerLink]="'item/create'">
+        mat-menu-item [routerLink]="'item/create/' + id">
         <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
-        <span>Crie um item</span>
+        <span>Criar uma doação</span>
     </button>
     <mat-divider class="my-2"></mat-divider>
     <button
@@ -38,8 +32,7 @@
     </button>
 </mat-menu>
 
-<mat-menu *ngIf="!isAuthenticated" [xPosition]="'before'" #userActions="matMenu">
-    <!--verificar se ta realmente logado se nao tiver fazer outro menu-->
+<!-- <mat-menu *ngIf="!isAuthenticated" [xPosition]="'before'" #userActions="matMenu">
     <button mat-menu-item [routerLink]="'usuario/create'">
         <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
         <span>Criar uma conta</span>
@@ -49,4 +42,4 @@
         <mat-icon [svgIcon]="'heroicons_outline:login'"></mat-icon>
         <span>Entrar</span>
     </button>
-</mat-menu>
+</mat-menu> -->

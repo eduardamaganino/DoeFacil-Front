@@ -22,7 +22,7 @@ export class DetailsItemComponent implements OnInit {
     titulo: '',
     motivo: '',
     quantidade: 0,
-    usuario: '',
+    dono: '',
     fotos: '',
     tempoDeUso: '',
     condicao: '',
@@ -32,6 +32,7 @@ export class DetailsItemComponent implements OnInit {
   submitted = false;
   debug = true;
   currentItemID: any;
+  currentIdUser: any;
 
   constructor(private itemService: ItemService, private route: ActivatedRoute,
               private router: Router) {}
@@ -42,6 +43,8 @@ export class DetailsItemComponent implements OnInit {
         this.editMode = true;
         this.currentItemID = params.idItem;
         this.getItem(this.currentItemID);
+      } else if (params.idUser) {
+        this.currentIdUser = params.idUser;
       } else {
         this.editMode = false;
       }
@@ -53,7 +56,7 @@ export class DetailsItemComponent implements OnInit {
       titulo: this.item.titulo,
       motivo: this.item.motivo,
       quantidade: this.item.quantidade,
-      usuario: this.item.usuario,
+      dono: this.currentIdUser,
       fotos: this.item.fotos,
       tempoDeUso: this.item.tempoDeUso,
       condicao: this.item.condicao,
@@ -84,7 +87,7 @@ export class DetailsItemComponent implements OnInit {
   }
 
   updateItem(): void {            
-    this.itemService.update(this.item.id, this.item)
+    this.itemService.update(this.item)
       .subscribe(
         response => {
           if (this.debug) console.log(response);         

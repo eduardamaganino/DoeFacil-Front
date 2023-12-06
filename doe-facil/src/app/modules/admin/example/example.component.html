@@ -21,14 +21,12 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
                     <ng-container >
                         <!-- fazer ng for-->
-                        <ng-container>
+                        <ng-container *ngFor="let item of itensCollection">
                             <!-- iTEM -->
                             <div class="flex flex-col items-start">
                                 <fuse-card class="flex flex-col" style="width: 210px;">
-                                    <div class="text-2xl leading-tight">item.titulo</div>
                                     <div class="items-center">
-                                        <img class="classimg" src="assets/images/profile/sofa.jpg">                
-                                    </div>
+                                        <img class="classimg" [src]="'assets/images/itens/'+ item.fotos + '.jpg'" style="border-radius: 10px;">                                    </div>
                                     <div class="flex flex-col">
                                        <!-- <div class="flex items-center mt-4">
                                             <div class="user-icon">
@@ -37,16 +35,20 @@
                                             <span class="leading-none ml-3">item.user</span>
                                         </div>-->
                                         <div class="flex items-center mt-4">
+                                            <mat-icon class="icon-size-5 mr-3 text-orange-500" [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+                                            <span class="leading-none text-orange-500">{{item.titulo}}</span>
+                                        </div>
+                                        <div class="flex items-center mt-4">
                                             <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:tag'"></mat-icon>
-                                            <span class="leading-none">item.categoria</span>
+                                            <span class="leading-none">{{item.categoria}}</span>
                                         </div>
                                         <div class="flex items-center mt-4">
                                             <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:information-circle'"></mat-icon>
-                                            <span class="leading-none">item.motivo</span>
+                                            <span class="leading-none">{{item.motivo}}</span>
                                         </div>
                                        
                                     </div>  
-                                    <a class="mt-4 w-full" mat-button  [color]="'primary'" [routerLink]="['./']">Pedir Doação</a>
+                                    <button class="mt-4 w-full" mat-button  [color]="'primary'" (click)="pedidoDeDoacao(item)">Pedir Doação</button>
                                 </fuse-card>
                             </div>
                         </ng-container>

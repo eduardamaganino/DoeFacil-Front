@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 interface JWTPayload {
     user_id: number;
@@ -30,10 +31,11 @@ export class UserComponent implements OnInit, OnDestroy
     user: User;
     isAuthenticated: boolean;
     currentUser: JWTPayload;
+    id: any;
 
 
     private _unsubscribeAll: Subject<any> = new Subject<any>();
-userActions: any;
+    userActions: any;
 
     /**
      * Constructor
@@ -42,8 +44,7 @@ userActions: any;
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService,
-        private _authService: AuthService // Injetar o serviço de autenticação
-
+        private _authService: AuthService, // Injetar o serviço de autenticação
     )
     {
     }
@@ -61,13 +62,15 @@ userActions: any;
         if (this.isAuthenticated) {
             this.currentUser = this._authService.getCurrentUser();
             if (this.currentUser) {
-                console.log(this.currentUser.email); // Aqui você tem o e-mail do usuário autenticado
+                console.log(this.currentUser); // Aqui você tem o e-mail do usuário autenticado
+                this.id = this.currentUser.user_id;
+                console.log(this.id); //
             } else {
                 console.log('Não foi possível obter o usuário atual');
             }
         }
-        console.log(this.isAuthenticated)
-    }   
+        console.log('Autentificação: ' + this.isAuthenticated);
+    }
 
     /**
      * On destroy
@@ -108,6 +111,8 @@ userActions: any;
      */
     signOut(): void
     {
-        this._router.navigate(['/sign-out']);
+        this._authService.signOut();
+        this._router.navigate(['/sign-in']);
+
     }
 }

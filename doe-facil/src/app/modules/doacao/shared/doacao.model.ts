@@ -5,11 +5,11 @@ import { BaseResourceModel } from "app/shared/models/base-resource.model";
 export class Doacao extends BaseResourceModel{
     id?: any;
     item: Item;
-    doador: Usuario;
+    doador: any;
     donatario: Usuario;
     dataDoacao: Date;
     recebido: string;
-    pedidor: string[];
+    pedidos: string[];
 
     static fromJson(jsonData: any): Doacao{
         return Object.assign(new Doacao(), jsonData);

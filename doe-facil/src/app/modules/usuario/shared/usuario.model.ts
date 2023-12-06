@@ -2,7 +2,7 @@ import { BaseResourceModel } from "app/shared/models/base-resource.model";
 
 export class Usuario extends BaseResourceModel{
     userId?: any;
-    nome?: string;
+    username?: string;
     email?: string;
     senha?: string;
     foto?: string;
@@ -20,7 +20,7 @@ export class Usuario extends BaseResourceModel{
     logradouro?: string;  
     cidade?: string;  
     estado?: string;  
-    //pais?: string;  
+    pais?: string;  
 
     static fromJson(jsonData: any): Usuario{
         return Object.assign(new Usuario(), jsonData);

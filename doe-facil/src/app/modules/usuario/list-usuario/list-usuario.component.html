@@ -22,8 +22,8 @@
 
             <!-- Dados -->
             <div class="flex flex-col items-center lg:items-start mt-4 lg:mt-0 lg:ml-8" (click)="menuSelecionado = 'sobreMim'">
-                <div class="text-lg font-bold leading-none">usuario.nome</div>              
-                <div class="text-secondary">usuario.cidade, usuario.pais</div>
+                <div class="text-lg font-bold leading-none">{{usuario.username}}</div>              
+                <div class="text-secondary">{{usuario.cidade}}, {{usuario.pais}}</div>
             </div>
 
             <!-- Separator -->
@@ -73,86 +73,88 @@
        
         <!-- Lista de itens de doacoes -->
         <div *ngIf="menuSelecionado === 'doacoesRealizadas'">
-            <div class="flex flex-col items-start">
-                <fuse-card class="flex flex-col max-w-80 w-full p-8">
-                    <div class="text-2xl font-semibold leading-tight">Titulo Item</div>
-                    <div class="mt-4">
-                        <img
-                        class="h-40 lg:h-80"
-                        src="assets/images/profile/sofa.jpg"
-                       >                </div>
-                    <hr class="w-full border-t my-6">
-                    <div class="flex flex-col">
-                        <div class="flex items-center">
-                            <mat-icon
-                                class="icon-size-5 mr-3"
-                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                            <span class="leading-none">Cidade</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <mat-icon
-                                class="icon-size-5 mr-3"
-                                [svgIcon]="'heroicons_solid:briefcase'"></mat-icon>
-                            <span class="leading-none">Categoria</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <mat-icon
-                                class="icon-size-5 mr-3"
-                                [svgIcon]="'heroicons_solid:cake'"></mat-icon>
-                            <span class="leading-none">Descricao</span>
-                        </div>
-                    </div>
-                    <a
-                        class="px-6 mt-8"
-                        mat-flat-button
-                        [color]="'primary'"
-                        [routerLink]="['./']">
-                        See 
-                    </a>
-                </fuse-card>
-            </div>
+            <!-- Items -->
+            <ng-container>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
+                    <ng-container >
+                        <!-- fazer ng for-->
+                        <ng-container *ngFor="let item of itensCollection">
+                            <!-- iTEM -->
+                            <div class="flex flex-col items-start">
+                                <fuse-card class="flex flex-col" style="width: 210px;">
+                                    <div class="items-center">
+                                        <img class="classimg" [src]="'assets/images/itens/'+ item.fotos + '.jpg'" style="border-radius: 10px;">                                    </div>
+                                    <div class="flex flex-col">
+                                       <!-- <div class="flex items-center mt-4">
+                                            <div class="user-icon">
+                                              <img src="assets/images/avatars/female-01.jpg">
+                                            </div>
+                                            <span class="leading-none ml-3">item.user</span>
+                                        </div>-->
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon class="icon-size-5 mr-3 text-orange-500" [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+                                            <span class="leading-none text-orange-500">{{item.titulo}}</span>
+                                        </div>
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+                                            <span class="leading-none">{{item.categoria}}</span>
+                                        </div>
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:information-circle'"></mat-icon>
+                                            <span class="leading-none">{{item.motivo}}</span>
+                                        </div>
+                                       
+                                    </div>  
+                                    <a class="mt-4 w-full" mat-button  [color]="'primary'" [routerLink]="['./']">Pedir Doação</a>
+                                </fuse-card>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
         </div>
 
         <!-- Lista de itens recebidos -->
         <div *ngIf="menuSelecionado === 'doacoesRecebidas'">
-            <div class="flex flex-col items-start">
-                <fuse-card class="flex flex-col max-w-80 w-full p-8">
-                    <div class="text-2xl font-semibold leading-tight">Titulo Item</div>
-                    <div class="mt-4">
-                        <img
-                        class="h-40 lg:h-80"
-                        src="assets/images/profile/sofa.jpg"
-                       >                </div>
-                    <hr class="w-full border-t my-6">
-                    <div class="flex flex-col">
-                        <div class="flex items-center">
-                            <mat-icon
-                                class="icon-size-5 mr-3"
-                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                            <span class="leading-none">Cidade</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <mat-icon
-                                class="icon-size-5 mr-3"
-                                [svgIcon]="'heroicons_solid:briefcase'"></mat-icon>
-                            <span class="leading-none">Categoria</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <mat-icon
-                                class="icon-size-5 mr-3"
-                                [svgIcon]="'heroicons_solid:cake'"></mat-icon>
-                            <span class="leading-none">Descricao</span>
-                        </div>
-                    </div>
-                    <a
-                        class="px-6 mt-8"
-                        mat-flat-button
-                        [color]="'primary'"
-                        [routerLink]="['./']">
-                        See 
-                    </a>
-                </fuse-card>
-            </div>    
+            <!-- Items -->
+            <ng-container>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
+                    <ng-container >
+                        <!-- fazer ng for-->
+                        <ng-container *ngFor="let item of doacoesRecebidosCollection">
+                            <!-- iTEM -->
+                            <div class="flex flex-col items-start">
+                                <fuse-card class="flex flex-col" style="width: 210px;">
+                                    <div class="items-center">
+                                        <img class="classimg" [src]="'assets/images/itens/'+ item.fotos + '.jpg'" style="border-radius: 10px;">                                    </div>
+                                    <div class="flex flex-col">
+                                       <!-- <div class="flex items-center mt-4">
+                                            <div class="user-icon">
+                                              <img src="assets/images/avatars/female-01.jpg">
+                                            </div>
+                                            <span class="leading-none ml-3">item.user</span>
+                                        </div>-->
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon class="icon-size-5 mr-3 text-orange-500" [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+                                            <span class="leading-none text-orange-500">{{item.titulo}}</span>
+                                        </div>
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:tag'"></mat-icon>
+                                            <span class="leading-none">{{item.categoria}}</span>
+                                        </div>
+                                        <div class="flex items-center mt-4">
+                                            <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:information-circle'"></mat-icon>
+                                            <span class="leading-none">{{item.motivo}}</span>
+                                        </div>
+                                       
+                                    </div>  
+                                    <a class="mt-4 w-full" mat-button  [color]="'primary'" [routerLink]="['./']">Pedir Doação</a>
+                                </fuse-card>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
         </div>
         
 

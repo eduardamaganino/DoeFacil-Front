@@ -181,7 +181,7 @@ private setSession(authResult) {
     signOut(): Observable<any>
     {
         // Remove the access token from the local storage
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem('token');
 
         // Set the authenticated flag to false
         this._authenticated = false;
@@ -195,9 +195,9 @@ private setSession(authResult) {
      *
      * @param user
      */
-    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
+    signUp(user: { username: string; email: string; password: string}): Observable<any>
     {
-        return this._httpClient.post('api/auth/sign-up', user);
+        return this._httpClient.post('http://127.0.0.1:8000/api/createUser', user);
     }
 
     /**

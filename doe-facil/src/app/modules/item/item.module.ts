@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 const itensRoutes: Route[] = [
 
   {
-    path     : 'create',
+    path     : 'create/:idUser',
     component: DetailsItemComponent,
   },
   {

@@ -9,7 +9,7 @@
         <ng-container fuseVerticalNavigationContentHeader>
             <!-- Logo -->
             <div class="flex items-center h-20 pt-6 px-8">
-                <img class="w-24" src="assets/images/logo/doeFacilLogo.svg"  alt="Logo image">
+                <img class="w-24" src="assets/images/logo/doeFacil.png"  alt="Logo image">
             </div>
         </ng-container>
     </fuse-vertical-navigation>
@@ -24,9 +24,8 @@
          <ng-container *ngIf="!isScreenSmall">
             <!-- Logo -->
             <div class="flex items-center mx-2 lg:mr-8 logo-container">
-              <div class="hidden lg:flex" [routerLink]="'/example'">
-                <img class="dark:hidden w-24" src="assets/images/logo/doeFacilLogo.svg">
-              </div>
+              <div [routerLink]="'/example'">
+                <img src="../../../../../assets/images/logo/doeFacil.png" style="width: 100px; height: 50;">              </div>
             </div>
             <search [appearance]="'basic'"></search>
           </ng-container>

@@ -26,6 +26,13 @@ export class ListItemComponent implements OnInit, OnDestroy {
       .pipe(
         switchMap(params => {
           this.category = params.get('nameCategory');
+          if(this.category == "calçados"){
+            this.category = "calcados";
+          } if(this.category == "decoração"){
+            this.category = "decoracao";
+          }if(this.category == "acessórios"){
+            this.category = "acessorios";
+          }
           return this.itemService.getAll();
         })
       )
@@ -44,6 +51,10 @@ export class ListItemComponent implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+  }
+
+  pedirDoacao(): void {
+   
   }
 
 

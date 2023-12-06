@@ -98,7 +98,7 @@ export class DetailsUsuarioComponent implements OnInit{
   }
   
   updateUsuario(){
-    this.usuarioService.update(this.usuario.userId, this.usuario).subscribe((res)=>{
+    this.usuarioService.update(this.usuario).subscribe((res)=>{
       alert('Usuario atualizado com sucesso');
     })
   }
@@ -124,7 +124,7 @@ export class DetailsUsuarioComponent implements OnInit{
     this.debug = true;
 
     this.usuario = {
-      nome: '',
+      username: '',
       email:'',
       senha: '',
       foto:'',

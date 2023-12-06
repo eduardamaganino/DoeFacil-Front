@@ -21,7 +21,7 @@ export class ListUsuarioComponent implements OnInit{
   usuario: Usuario = {};
   
   itensCollection: Item[] = [];
-  doacoesRecebidosCollection: Doacao[] = [];
+  doacoesRecebidosCollection: Item[] = [];
 
 
   debug = true;
@@ -36,7 +36,8 @@ export class ListUsuarioComponent implements OnInit{
 
   ngOnInit(): void {
     this.message = '';
-    this.currentUsuarioID = this.route.snapshot.params['id']    
+    this.currentUsuarioID = this.route.snapshot.params['id']  
+    console.log(this.currentUsuarioID);  
     this.getUsuario(this.currentUsuarioID);
     this.menuSelecionado =  'sobreMim';
   }
@@ -47,7 +48,8 @@ export class ListUsuarioComponent implements OnInit{
         data => {
           this.usuario = data;
           if (this.debug) console.log(data);
-          this.getItensByUser(data.nome);
+          this.getItensByUser(data.id);
+          this.getItensRecebidos(data.id);
 
         },
         error => {
@@ -55,15 +57,15 @@ export class ListUsuarioComponent implements OnInit{
         });
   }
 
-  getItensByUser(nomeUsuario: string): void {  
+  getItensByUser(idUser: string): void {  
     this.itemService.getAll()
       .subscribe(data => {
           console.log(data)
           const itensFiltrados: Item[] = [];
   
           for (const item of data) {
-            console.log(item.usuario)
-            if (item.usuario === nomeUsuario) {
+            console.log(item.dono)
+            if (item.dono === idUser) {
               itensFiltrados.push(item);
             }
           }
@@ -74,20 +76,22 @@ export class ListUsuarioComponent implements OnInit{
     }); 
   }
 
-  getItensRecebidos(nomeUsuario: string): void {
+  getItensRecebidos(idUser: string): void {
     this.doacaoService.getAll()
     .subscribe(data => {
-      console.log(data)
       const doacaoFiltrados: Doacao[] = [];
       for (const doacao of data) {
-        console.log(doacao.donatario)
-        if (doacao.donatario === nomeUsuario) {
+        if (doacao.donatario === idUser) {
           doacaoFiltrados.push(doacao);
         }
       }
-      this.doacoesRecebidosCollection = doacaoFiltrados;
-      console.log(this.doacoesRecebidosCollection);
-      //getItemByDoacao(doacaoFiltrados);
+      this.doacoesRecebidosCollection = [];
+      for (const doacao of doacaoFiltrados) {
+        this.itemService.get(doacao.item)
+        .subscribe(item => {
+          this.doacoesRecebidosCollection.push(item);
+        });
+      }
     }); 
   }
 
