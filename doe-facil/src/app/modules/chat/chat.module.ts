@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ChatComponent } from './chat/chat.component';
 import { Route, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 const chatRoutes: Route[] = [
     {
@@ -21,6 +24,11 @@ const chatRoutes: Route[] = [
   imports: [
     RouterModule.forChild(chatRoutes),
     FormsModule,
+    MatButtonModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
     CommonModule
   ]
 })

@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
       <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
       </div>
@@ -18,4 +18,35 @@
              (change)="message = $event.target.value"
       />
     </form>
-  </div>
+  </div> -->
+
+      <!-- src/app/msg/msg.component.html -->    
+      <div class="w-100">
+        <div class="h-100 overflow-x-hidden" #chatBox>
+          <div *ngFor="let msg of messages">
+            <div class="message sent" *ngIf="msg.username === user.username">
+              {{msg.message}}
+              <span class="metadata">
+                <span class="time">{{msg.created_at | date: 'HH:mm'}}</span>
+              </span>
+            </div>
+            <div class="message received" *ngIf="msg.username !== user.username">
+              <strong>{{msg.username}}</strong> <br>
+              {{msg.message}}
+              <span class="metadata">
+                <span class="time">{{msg.created_at | date: 'HH:mm'}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="d-flex flex-row w-full">
+          <mat-form-field class="w-full">
+            <input matInput type="text" placeholder="Enter message" [(ngModel)]="message" name="message">
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="submit()" [disabled]="!message || sending">
+                <mat-icon>send</mat-icon>
+              </button>
+          </mat-form-field>
+        </div>
+      </div>
+  
