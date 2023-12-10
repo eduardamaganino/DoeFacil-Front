@@ -18,7 +18,7 @@ export class ListUsuarioComponent implements OnInit{
   disabled = false;
   menuSelecionado: string;
 
-  usuario: Usuario = {};
+  usuario: Usuario = {  };
   
   itensCollection: Item[] = [];
   doacoesRecebidosCollection: Item[] = [];
@@ -27,6 +27,7 @@ export class ListUsuarioComponent implements OnInit{
   debug = true;
   message = '';
   currentUsuarioID: any;
+  teste : any;
 
   constructor(private usuarioService: UsuarioService,
               private route: ActivatedRoute,
@@ -50,7 +51,7 @@ export class ListUsuarioComponent implements OnInit{
           if (this.debug) console.log(data);
           this.getItensByUser(data.id);
           this.getItensRecebidos(data.id);
-
+          this.getAvaliacao(); 
         },
         error => {
           console.log(error);

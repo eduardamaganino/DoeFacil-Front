@@ -6,11 +6,11 @@ export class Usuario extends BaseResourceModel{
     email?: string;
     senha?: string;
     foto?: string;
-    //fotoFundo?: string;
     bio?: string;
     telefone?: number;
     cpf?: string;
     idade?: number;
+    punicao?: Date;
     sexo?: string;
     nota?: string[];
     countAvaliacao?: number;
@@ -20,7 +20,7 @@ export class Usuario extends BaseResourceModel{
     logradouro?: string;  
     cidade?: string;  
     estado?: string;  
-    pais?: string;  
+    pais?: string; 
 
     static fromJson(jsonData: any): Usuario{
         return Object.assign(new Usuario(), jsonData);

@@ -130,6 +130,7 @@ export class DetailsUsuarioComponent implements OnInit{
       foto:'',
       //fotoFundo?: string;
       bio: '',
+      punicao: null,
       telefone: 0,
       cpf: '',
       idade: null,

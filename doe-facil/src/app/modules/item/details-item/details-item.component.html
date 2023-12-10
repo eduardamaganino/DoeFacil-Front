@@ -70,11 +70,11 @@
                                 [(ngModel)]="item.condicao" name="condicao" [autocomplete]="'off'" [spellcheck]="false"/>
                             </mat-form-field>
                             <!-- Foto -->
-                            <mat-form-field appearance="outline" class="mt-4 w-full">
+                            <form #form="ngForm" (ngSubmit)="uploadImage(form)">
                               <mat-label>Foto</mat-label>
-                              <input matInput placeholder="Ex: Em excelente estado"  id="fotos" required
-                                [(ngModel)]="item.fotos" name="fotos" [autocomplete]="'off'" [spellcheck]="false"/>
-                            </mat-form-field>
+                              <input required type="file" (change)="onFileSelected($event)" accept="image/*"/>
+                              <button type="submit" [disabled]="!selectedFile">Enviar</button>
+                            </form> 
                             <!-- Usuario 
                             <mat-form-field appearance="outline" class="mt-4 w-full">
                               <mat-label>Usuario</mat-label>
