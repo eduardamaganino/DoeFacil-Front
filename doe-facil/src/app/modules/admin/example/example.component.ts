@@ -27,6 +27,8 @@ export class ExampleComponent implements OnInit {
     doacao: any;
     currentUserID: any;
     currentUser: Usuario = {};
+    usuarioPunido: boolean;
+    alert: boolean;
 
     constructor(
         protected itemService: ItemService,
@@ -41,6 +43,7 @@ export class ExampleComponent implements OnInit {
     ngOnInit(): void {
         this.getItens();
         this.currentUserID = this.getId();
+        this.getUserAndCheckDate(this.currentUserID);
     }
 
     getId(): any {
@@ -64,10 +67,19 @@ export class ExampleComponent implements OnInit {
         this.currentIndex = -1;
     }
 
-    getUser(id: any, item: any) {
+    getUserAndCheckDate(id: any) {
         this.userService.get(id).subscribe(
             data => {
-                this.checkDate(data.punicao, data, item);
+                const currentDate = new Date();
+                const punishmentDate = new Date(data.punicao);
+                const timeDifference = currentDate.getTime() - punishmentDate.getTime();
+                const differenceInDays = timeDifference / (1000 * 3600 * 24);
+        
+                if (differenceInDays <= 1) {
+                    this.usuarioPunido = true; 
+                    console.log(this.usuarioPunido);
+                    return null;
+                }
             },
             error => {
                 console.log(error);
@@ -75,17 +87,31 @@ export class ExampleComponent implements OnInit {
         );
     }
 
-    checkDate(userPunicao: Date, user: Usuario, item: any) {
+    getUser(id: any) {
+        this.userService.get(id).subscribe(
+            data => {
+                this.checkDate(data.punicao, data);
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
+
+    checkDate(userPunicao: Date, user: Usuario) {
         const currentDate = new Date();
         const punishmentDate = new Date(userPunicao);
         const timeDifference = currentDate.getTime() - punishmentDate.getTime();
         const differenceInDays = timeDifference / (1000 * 3600 * 24);
 
-        if (differenceInDays <= 1) {
+        if (differenceInDays <= 1) {     
             alert('Usuário punido');
+       
+            this.usuarioPunido = true; // Definir a variável usuarioPunido como true
+            console.log(this.usuarioPunido);
             return null;
         } else {
-            this.updateUser(user.id, user, item);
+            this.updateUser(user.id, user, this.currentItem);
         }
     }
 
@@ -121,8 +147,10 @@ export class ExampleComponent implements OnInit {
         });
     }
 
-    pedidoDeDoacao(item: any) {
-        this.getUser(this.currentUserID, item);
+    pedidoDeDoacao(item: Item) {
+        this.currentItem = item;
+        this.alert = false;
+        this.getUser(this.currentUserID);
     }
 }
 

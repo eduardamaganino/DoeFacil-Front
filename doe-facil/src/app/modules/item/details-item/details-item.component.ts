@@ -40,7 +40,7 @@ export class DetailsItemComponent implements OnInit {
 
   constructor(private itemService: ItemService, private route: ActivatedRoute,
               private router: Router, 
-              private http: HttpClient,) {}
+              private http: HttpClient,
               private localStorage: LocalStorageService) {}
 
 
@@ -56,7 +56,8 @@ export class DetailsItemComponent implements OnInit {
         this.editMode = false;
       }
     });
-  }
+  } // Add a semicolon at the end of the line
+  
 
   createItem(): void {
     const nomeFoto = this.currentIdUser + '-' + this.item.titulo + '.jpg';
@@ -68,7 +69,7 @@ export class DetailsItemComponent implements OnInit {
       motivo: this.item.motivo,
       quantidade: this.item.quantidade,
       dono: this.currentIdUser, 
-      fotos: `../../../assets/images/itens/${nomeFoto}`,
+      fotos: `http://localhost:8000/api/media/${nomeFoto}`,
       tempoDeUso: this.item.tempoDeUso,
       condicao: this.item.condicao,
       categoria: this.item.categoria,
@@ -159,3 +160,5 @@ export class DetailsItemComponent implements OnInit {
   }
 
 }
+
+
