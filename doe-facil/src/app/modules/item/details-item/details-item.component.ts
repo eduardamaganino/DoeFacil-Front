@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from '../shared/item.model';
 import { ItemService } from '../shared/item.service';
+import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from 'app/shared/services/local-storage.service';
+
 
 @Component({
   selector: 'app-details-item',
@@ -30,14 +32,17 @@ export class DetailsItemComponent implements OnInit {
     categoria: '',
   };
 
+  selectedFile: File | null = null;
   submitted = false;
   debug = true;
   currentItemID: any;
   currentIdUser: any;
 
   constructor(private itemService: ItemService, private route: ActivatedRoute,
-              private router: Router,
+              private router: Router, 
+              private http: HttpClient,) {}
               private localStorage: LocalStorageService) {}
+
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -54,6 +59,7 @@ export class DetailsItemComponent implements OnInit {
   }
 
   createItem(): void {
+    const nomeFoto = this.currentIdUser + '-' + this.item.titulo + '.jpg';
     const userId = this.localStorage.getItem('user').user_id;
     console.log(userId);
 
@@ -61,8 +67,8 @@ export class DetailsItemComponent implements OnInit {
       titulo: this.item.titulo,
       motivo: this.item.motivo,
       quantidade: this.item.quantidade,
-      dono: userId,
-      fotos: this.item.fotos,
+      dono: this.currentIdUser, 
+      fotos: `../../../assets/images/itens/${nomeFoto}`,
       tempoDeUso: this.item.tempoDeUso,
       condicao: this.item.condicao,
       categoria: this.item.categoria,
@@ -125,4 +131,31 @@ export class DetailsItemComponent implements OnInit {
       this.createItem();
     }
   }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+  }
+
+  uploadImage(form: any) {
+    if (!this.selectedFile) {
+      return;
+    }
+    const nomeFoto = this.currentIdUser + '-' + this.item.titulo + '.jpg';
+
+    const formData = new FormData();
+    formData.append('file', this.selectedFile, nomeFoto);
+
+    this.http.post('http://127.0.0.1:8000/api/upload', formData).subscribe(
+      (response) => {
+        console.log("Deu Bom1", response);
+      },
+      (error) => {
+        console.log("Deu Ruim2", error);
+      }
+    );
+
+   
+  }
+
 }
