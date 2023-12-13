@@ -8,7 +8,7 @@ export class Doacao extends BaseResourceModel{
     doador: any;
     donatario: Usuario;
     dataDoacao: Date;
-    recebido: string;
+    recebido: boolean;
     pedidos: string[];
 
     static fromJson(jsonData: any): Doacao{

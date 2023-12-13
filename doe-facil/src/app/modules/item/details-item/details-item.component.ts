@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from '../shared/item.model';
 import { ItemService } from '../shared/item.service';
+import { LocalStorageService } from 'app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-details-item',
@@ -35,7 +36,8 @@ export class DetailsItemComponent implements OnInit {
   currentIdUser: any;
 
   constructor(private itemService: ItemService, private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router,
+              private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -52,16 +54,22 @@ export class DetailsItemComponent implements OnInit {
   }
 
   createItem(): void {
+    const userId = this.localStorage.getItem('user').user_id;
+    console.log(userId);
+
     const data = {
       titulo: this.item.titulo,
       motivo: this.item.motivo,
       quantidade: this.item.quantidade,
-      dono: this.currentIdUser,
+      dono: userId,
       fotos: this.item.fotos,
       tempoDeUso: this.item.tempoDeUso,
       condicao: this.item.condicao,
       categoria: this.item.categoria,
+      recebido: 0,
     };
+  
+    console.log(data);
 
     this.itemService.create(data).subscribe(
       response => {

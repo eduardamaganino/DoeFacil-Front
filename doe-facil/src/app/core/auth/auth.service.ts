@@ -132,6 +132,7 @@ private setSession(authResult) {
     const expiresAt = moment.unix(payload.exp);
 
     localStorage.setItem('token', authResult.access);
+    localStorage.setItem('user', JSON.stringify(payload));
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 }
 
