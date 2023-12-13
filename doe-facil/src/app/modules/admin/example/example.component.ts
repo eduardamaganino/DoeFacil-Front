@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from 'app/core/auth/auth.service';
 import { UserService } from 'app/core/user/user.service';
 import { user } from 'app/mock-api/common/user/data';
+import { ChatComponent } from 'app/modules/chat/chat/chat.component';
 import { Doacao } from 'app/modules/doacao/shared/doacao.model';
 import { DoacaoService } from 'app/modules/doacao/shared/doacao.service';
 import { Item } from 'app/modules/item/shared/item.model';
@@ -29,8 +32,11 @@ export class ExampleComponent implements OnInit {
         protected itemService: ItemService,
         protected doacaoService: DoacaoService,
         protected authService: AuthService,
-        protected userService: UsuarioService
+        protected userService: UsuarioService,
+        protected router: Router,
+        private dialog: MatDialog,
     ) {}
+
 
     ngOnInit(): void {
         this.getItens();
@@ -96,12 +102,22 @@ export class ExampleComponent implements OnInit {
             item: item.id,
             doador: item.dono,
             donatario: this.getId(),
-            recebido: 'Em andamento',
+            recebido: 0,
             pedidos: [item.dono],
         };
         console.log(this.doacao);
-        this.doacaoService.create(this.doacao).subscribe(data => {
-            console.log(data);
+        this.doacaoService.create(this.doacao)
+            .subscribe(data => {
+                console.log(data);
+                // this.router.navigate(['/chat/' + this.doacao.item, 'donee']);
+                this.dialog.open(ChatComponent, {
+                    data: {
+                        donationId: data.item,
+                        action: 'donee'
+                        },
+                    width: '500px',
+                    height: '100%',
+                    });
         });
     }
 

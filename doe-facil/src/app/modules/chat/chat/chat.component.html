@@ -1,0 +1,109 @@
+  <!-- <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto">
+    <div class="w-100">
+      <div class="h-100 overflow-x-hidden" #chatBox>
+        <div *ngFor="let msg of messages ; let i = index">
+          <div class="message sent" *ngIf="msg.username === user.username || user.id === msg.user">
+            {{msg.message}}
+            <span class="inline-block float-right relative bottom-4">
+              <span class="time">{{msg.created_at | date: 'HH:mm'}}</span>
+            </span>
+          </div>
+            <div class="message received" *ngIf="msg.username !== user.username && user.id !== msg.user">
+              <div>
+                <strong>{{msg.username ? msg.username : msg.user_detail.username}}</strong> <br>
+                {{msg.message}}
+                <span class="metadata">
+                  <span class="time">{{msg.created_at | date: 'HH:mm'}}</span>
+                </span>
+            </div>
+            <div class="d-flex flex-row" *ngIf="msg.type === 'donee'">
+          </div>
+        </div>
+      </div>
+    
+      <div class="d-flex flex-row w-full">
+        <mat-form-field class="w-full">
+          <input matInput type="text" placeholder="Enter message" [(ngModel)]="message" name="message">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="submit()" [disabled]="!message || sending">
+              <mat-icon>send</mat-icon>
+            </button>
+        </mat-form-field>
+      </div>
+      <div *ngIf="data.action == 'donor'">
+        <button mat-raised-button color="primary" (click)="accept()">Accept</button>
+        <button mat-raised-button color="warn" (click)="decline()">Decline</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div class="flex flex-col flex-grow w-full h-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+		<div class="flex flex-col flex-grow h-0 p-4 overflow-auto">
+
+			<div class="flex w-full mt-2 space-x-3 max-w-xs">
+        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
+          <span class="text-center">A</span>
+        </div>
+				<div>
+					<div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+						<p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					</div>
+					<span class="text-xs text-gray-500 leading-none">2 min ago</span>
+				</div>
+			</div>
+
+			<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+				<div>
+					<div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+						<p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+					</div>
+					<span class="text-xs text-gray-500 leading-none">2 min ago</span>
+				</div>
+			</div>
+		
+		<div class="bg-gray-300 p-4 bottom-0 rounded-b-lg">
+			<input class="flex items-center h-10 w-full rounded px-3 text-sm" type="text" placeholder="Type your message…">
+		</div>
+	</div>-->
+
+  <div class="flex flex-col flex-grow w-full h-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+    <div class="flex flex-col flex-grow h-0 p-4 overflow-auto">
+      <div *ngFor="let msg of messages ; let i = index">
+        <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end" *ngIf="msg.username === user.username || user.id === msg.user">
+          <div>
+            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+              <p class="text-sm">{{msg.message}}</p>
+            </div>
+            <span class="text-xs text-gray-500 leading-none">{{msg.created_at | date: 'HH:mm'}}</span>
+          </div>
+        </div>
+  
+        <div class="flex w-full mt-2 space-x-3 max-w-xs" *ngIf="msg.username !== user.username && user.id !== msg.user">
+          <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
+            <span class="text-center">{{msg.username ? msg.username[0] : msg.user_detail.username[0]}}</span>
+          </div>
+          <div>
+            <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+              <p class="text-sm">{{msg.message}}</p>
+            </div>
+            <span class="text-xs text-gray-500 leading-none">{{msg.created_at | date: 'HH:mm'}}</span>
+          </div>
+          <div *ngIf="message.sender !== 'me' && i === messages.length - 1 && data.action == 'donor'">
+            <button mat-raised-button color="primary" (click)="accept()">Accept</button>
+            <button mat-raised-button color="warn" (click)="decline()">Decline</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="absolute inset-x-0 bottom-0 bg-gray-300 p-4 rounded-b-lg flex-shrink-0">
+        <div class="d-flex flex-row w-full">
+          <mat-form-field class="w-full">
+            <input matInput type="text" placeholder="Enter message" [(ngModel)]="message" name="message">
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="submit()" [disabled]="!message || sending">
+                <mat-icon>send</mat-icon>
+              </button>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
