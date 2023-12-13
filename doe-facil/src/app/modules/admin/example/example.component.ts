@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from 'app/core/auth/auth.service';
+import { ChatComponent } from 'app/modules/chat/chat/chat.component';
 import { Doacao } from 'app/modules/doacao/shared/doacao.model';
 import { DoacaoService } from 'app/modules/doacao/shared/doacao.service';
 import { Item } from 'app/modules/item/shared/item.model';
@@ -21,7 +24,9 @@ export class ExampleComponent implements OnInit{
     
     constructor(protected itemService: ItemService,
         protected doacaoService: DoacaoService,
-        protected authService: AuthService)
+        protected authService: AuthService,
+        protected router: Router,
+        private dialog: MatDialog,)
     {}
 
     ngOnInit(): void {
@@ -64,19 +69,23 @@ export class ExampleComponent implements OnInit{
             item: item.id,
             doador: item.dono,
             donatario: this.getId(),
-            recebido: 'Em andamento',
+            recebido: 0,
             pedidos: [item.dono],
         }
         console.log(this.doacao);
         this.doacaoService.create(this.doacao)
             .subscribe(data => {
                 console.log(data);
-            })
-        // verifica se ja existe alguma doação deste item
-        // se nao
-        // cria uma doação e adiciona no pedidos
-        // se sim
-        // adiciona nos pedidos
+                // this.router.navigate(['/chat/' + this.doacao.item, 'donee']);
+                this.dialog.open(ChatComponent, {
+                    data: {
+                        donationId: data.item,
+                        action: 'donee'
+                        },
+                    width: '500px',
+                    height: '100%',
+                    });
+        });
     }
 
     

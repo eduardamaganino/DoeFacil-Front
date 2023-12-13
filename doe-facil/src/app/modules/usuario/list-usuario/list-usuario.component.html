@@ -105,7 +105,7 @@
                                         </div>
                                        
                                     </div>  
-                                    <a class="mt-4 w-full" mat-button  [color]="'primary'" [routerLink]="['./']">Pedir Doação</a>
+                                    <a class="mt-4 w-full" mat-button  [color]="'primary'" (click)="openChat(item)" [disabled]="item.recebido">Conversar</a> <!-- [routerLink]="['./']" -->
                                 </fuse-card>
                             </div>
                         </ng-container>
@@ -148,7 +148,7 @@
                                         </div>
                                        
                                     </div>  
-                                    <a class="mt-4 w-full" mat-button  [color]="'primary'" [routerLink]="['./']">Pedir Doação</a>
+                                    <a class="mt-4 w-full" mat-button  [color]="'primary'" [routerLink]="['./']" [disabled]="item.recebido">Conversar</a> <!-- [routerLink]="['./']" -->
                                 </fuse-card>
                             </div>
                         </ng-container>

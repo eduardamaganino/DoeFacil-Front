@@ -66,6 +66,7 @@ export class DetailsItemComponent implements OnInit {
       tempoDeUso: this.item.tempoDeUso,
       condicao: this.item.condicao,
       categoria: this.item.categoria,
+      recebido: 0,
     };
   
     console.log(data);

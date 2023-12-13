@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 const chatRoutes: Route[] = [
     {
-      path     : '',
+      path     : ':id/:action',
       component: ChatComponent,
     },
   ];

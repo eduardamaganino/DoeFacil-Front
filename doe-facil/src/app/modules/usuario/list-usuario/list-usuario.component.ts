@@ -6,6 +6,8 @@ import { Item } from 'app/modules/item/shared/item.model';
 import { ItemService } from 'app/modules/item/shared/item.service';
 import { DoacaoService } from 'app/modules/doacao/shared/doacao.service';
 import { Doacao } from 'app/modules/doacao/shared/doacao.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ChatComponent } from 'app/modules/chat/chat/chat.component';
 
 @Component({
   selector: 'app-list-usuario',
@@ -23,6 +25,8 @@ export class ListUsuarioComponent implements OnInit{
   itensCollection: Item[] = [];
   doacoesRecebidosCollection: Item[] = [];
 
+  doacaoesCollection: Doacao[] = [];
+
 
   debug = true;
   message = '';
@@ -31,15 +35,24 @@ export class ListUsuarioComponent implements OnInit{
   constructor(private usuarioService: UsuarioService,
               private route: ActivatedRoute,
               private itemService: ItemService,
-              private doacaoService: DoacaoService) {
+              private doacaoService: DoacaoService,
+              private dialog: MatDialog,) {
               }
 
   ngOnInit(): void {
+    this.getDoacoes();
     this.message = '';
     this.currentUsuarioID = this.route.snapshot.params['id']  
     console.log(this.currentUsuarioID);  
     this.getUsuario(this.currentUsuarioID);
     this.menuSelecionado =  'sobreMim';
+  }
+
+  getDoacoes(): void {
+    this.doacaoService.getAll()
+    .subscribe(data => {
+      this.doacaoesCollection = data;
+    }); 
   }
             
   getUsuario(id: string): void {
@@ -92,11 +105,43 @@ export class ListUsuarioComponent implements OnInit{
           this.doacoesRecebidosCollection.push(item);
         });
       }
+      this.doacoesRecebidosCollection = this.doacoesRecebidosCollection.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
     }); 
   }
 
   getAvaliacao(): void {
     
+  }
+
+  openChat(item: any): void {
+    const dialogRef = this.dialog.open(ChatComponent, {
+      width: '500px',
+      height: '500px',
+      data: {
+        donationId: item.id,
+        action: 'donor'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res === 1) {
+        item.recebido = true;
+        this.itemService.update(item).subscribe((res) => {
+          console.log(res);
+          this.getItensRecebidos(this.currentUsuarioID);
+        });
+      }
+    });
+  }
+
+  getDoacaoStatus(item: Item): boolean {
+    if(this.doacaoesCollection.length > 0) {
+      for (const doacao of this.doacaoesCollection) {
+        if (doacao.item === item.id) {
+          return doacao.recebido;
+        }
+      }
+    }
   }
 
 }
